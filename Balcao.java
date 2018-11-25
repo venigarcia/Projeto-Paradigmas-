@@ -17,4 +17,21 @@ public class Balcao extends Atendimento{
         super(qtdCliente, garcom);
         cliente = new ArrayList();
     }
+    
+    /**
+     *
+     * @param cod
+     */
+    @Override
+    public void fecharConta(int cod){
+        super.fecharConta(cod);
+        Iterator it = cliente.iterator();
+        do{
+            Cliente cl = (Cliente)it.next();
+            if(cl.cpf == cod){
+                cl.statusCliente = false;
+                break;
+            }
+        }while(it.hasNext());       
+    }
 }
