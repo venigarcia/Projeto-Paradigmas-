@@ -9,12 +9,30 @@ package restaurante;
  * @author veniciusgarcia
  */
 public class Mesa extends Atendimento{
-    public Mesa(int qtdCliente, Garcom garcom){
+    protected int cod;
+    public Mesa(int qtdCliente, Garcom garcom, int cod){
         super(qtdCliente, garcom);
+        this.cod = cod; 
     }
     
-    private void addItemPedido(String nome, int qtd, int preco){
+    /**
+     *
+     * @param nome
+     * @param qtd
+     * @param preco
+     */
+    public void addItemPedido(String nome, int qtd, int preco){
         int cod = (int)Math.random()*10;
-        addItemPedido()
+        super.addItemPedido(nome, qtd, preco, cod);
+    }
+
+    /**
+     *
+     * @param cod
+     */
+    @Override
+    public void fecharConta(int cod){
+        super.fecharConta(cod);
+        statusConta = false;
     }
 }
