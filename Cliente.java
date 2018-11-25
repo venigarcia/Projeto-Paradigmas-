@@ -12,7 +12,6 @@ package restaurante;
 public class Cliente {
     protected int cpf;
     protected boolean statusCliente; 
-    
     public Cliente(int cpf){
         statusCliente = true;
         this.cpf = cpf;
