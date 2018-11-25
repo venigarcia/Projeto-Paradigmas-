@@ -47,12 +47,12 @@ public class Atendimento {
         Pedido p = new Pedido(nome, qtd, preco, cod);
         pedido.add(p);        
     }
-    public void removeItemPedido(String nome){
+    public void removeItemPedido(String nome, int cod){
         boolean remove = false;
         Iterator it = pedido.iterator();
         do{
             Pedido p = (Pedido)it.next();
-            if(p.nome.equals(nome)){
+            if(p.nome.equals(nome)&& p.codResponsavel==cod){
                 pedido.remove(p);
                 remove = true;
             }
