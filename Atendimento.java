@@ -22,31 +22,32 @@ public class Atendimento {
         this.garcom = garcom;
         statusConta = true;
     }
-    private double totalConta(){
+    public double totalConta(int cod){
         double total = 0;
         Iterator it = pedido.iterator();
         do{
             Pedido p = (Pedido)it.next();
-            total = total +p.preco;
+            if(p.codResponsavel == cod)
+                total = total +p.preco;
         }while(it.hasNext());
         return total;
     }
-    private double totalContaPorCliente(){
+    public double totalContaPorCliente(int cod){
         double totalCliente;
-        totalCliente = totalConta()/qtdCliente;
+        totalCliente = totalConta(cod)/qtdCliente;
         return totalCliente;
     }
-    private double gorjetaGarcom(){
+    public double gorjetaGarcom(int cod){
         double gorjeta;
-        gorjeta = totalConta()*0.10;
+        gorjeta = totalConta(cod)*0.10;
         garcom.gorjeta = gorjeta;
         return gorjeta;
     }
-    private void addItemPedido(String nome, int qtd, int preco){
+    public void addItemPedido(String nome, int qtd, int preco, int cod){
         Pedido p = new Pedido(nome, qtd, preco, cod);
         pedido.add(p);        
     }
-    private void removeItemPedido(String nome){
+    public void removeItemPedido(String nome){
         boolean remove = false;
         Iterator it = pedido.iterator();
         do{
@@ -57,18 +58,20 @@ public class Atendimento {
             }
         }while(!remove && it.hasNext());
     }
-    private void imprimirConta(){
+    public void imprimirConta(int cod){
         Iterator it = pedido.iterator();
         do{
             Pedido p = (Pedido)it.next();
             System.out.println("Pedido: "+p.nome);
             System.out.println("Preco: "+p.preco);
         }while(it.hasNext());
-        System.out.println("Valor total da conta: " + totalConta());
-        System.out.println("Valor total da conta por Cliente: " + totalContaPorCliente());
+        System.out.println("Valor total da conta: " + totalConta(cod));
+        System.out.println("Valor total da conta por Cliente: " + totalContaPorCliente(cod));
     }
-    private void fecharConta(){
-        System.out.println("Gorjeta Garcom: "+gorjetaGarcom());
-        statusConta = false;
+    public void fecharConta(int cod){
+        System.out.println("Gorjeta Garcom: "+gorjetaGarcom(cod));
+    }
+    public void totalizarConta(int cod){
+        
     }
 }
