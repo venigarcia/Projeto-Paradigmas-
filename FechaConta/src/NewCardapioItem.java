@@ -25,7 +25,6 @@ public class NewCardapioItem extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
         codText = new javax.swing.JTextField();
@@ -46,13 +45,15 @@ public class NewCardapioItem extends javax.swing.JFrame {
         jLabel1.setText("Cod.");
 
         codText.setToolTipText("");
+        codText.setEnabled(false);
 
         jLabel2.setText("Preço");
 
         jLabel3.setText("Descrição");
 
-        descText.setColumns(20);
-        descText.setRows(5);
+        descText.setColumns(1);
+        descText.setLineWrap(true);
+        descText.setRows(6);
         jScrollPane1.setViewportView(descText);
 
         salvarButton.setText("Salvar");
@@ -109,7 +110,7 @@ public class NewCardapioItem extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

@@ -60,6 +60,11 @@ public class Restaurante extends javax.swing.JFrame {
         });
 
         newPedido.setText("Novo Pedido");
+        newPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newPedidoMouseClicked(evt);
+            }
+        });
 
         close.setText("Encerrar");
 
@@ -129,6 +134,10 @@ public class Restaurante extends javax.swing.JFrame {
     private void balcaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balcaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_balcaoActionPerformed
+
+    private void newPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPedidoMouseClicked
+        new NewPedido().setVisible(true);
+    }//GEN-LAST:event_newPedidoMouseClicked
 
     /**
      * @param args the command line arguments
