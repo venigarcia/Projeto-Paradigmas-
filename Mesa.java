@@ -31,7 +31,7 @@ public class Mesa {
         de cada objeto Item dentro do Array*/
     public double totalConta(){
         double total = 0;
-        Iterator it = pedidos.iterator();
+        Iterator it = getPedidos().iterator();
         do{
             Item i = (Item)it.next();
             total = total +i.getPrecoTotal();
@@ -41,7 +41,7 @@ public class Mesa {
 
     //Divide o resultado do retorno da função totalConta() pela quantidade de clientes na Mesa
     public double totalContaPorCliente(){
-        return totalConta()/qtdCliente;
+        return totalConta()/getQtdCliente();
     }
 
     //Estabelece um valor de 10% em cima do retorno da função totalConta(), e retorna-o
@@ -60,7 +60,7 @@ public class Mesa {
             Cardapio c = (Cardapio)it.next();
             if(c.getCod() == cod){
                 Item i = new Item( cod, qtd, c.getPreco());
-                pedidos.add(i);
+                getPedidos().add(i);
                 break;
             }
         }while(it.hasNext());
@@ -70,12 +70,12 @@ public class Mesa {
         senão, atribui a preço total seu valor menos o preço por unidade * a quantidade passada no parâmetro.
     */
     public void removeItem(int cod, int qtd){
-        Iterator it = pedidos.iterator();
+        Iterator it = getPedidos().iterator();
         do{
             Item i = (Item)it.next();
             if(i.getCod() == cod){
                 if(qtd>=i.getQtd()){
-                    pedidos.remove(i);
+                    getPedidos().remove(i);
                 }else{
                     i.setPrecoTotal(i.getPrecoTotal()-(i.getPreco()*qtd));
                     i.setQtd(i.getQtd()-qtd);
@@ -92,11 +92,95 @@ public class Mesa {
         de Restaurantte r.
     */
     public void fecharConta(Restaurante r, int aval){
-        garcom.totalizaDia(calcGorjeta());
-        statusConta = false;
+        getGarcom().totalizaDia(calcGorjeta());
+        setStatusConta(false);
         Date data = new Date(System.currentTimeMillis());
-        Atendimento a = new Atendimento(cod, garcom.getCod(), pedidos, data, totalConta(), calcGorjeta(), aval);
+        Atendimento a = new Atendimento(getCod(), getGarcom().getCod(), getPedidos(), data, totalConta(), calcGorjeta(), aval);
         r.addAtendimento(a);
     }
     public void imprimir(){}
+
+    /**
+     * @return the qtdCliente
+     */
+    public int getQtdCliente() {
+        return qtdCliente;
+    }
+
+    /**
+     * @param qtdCliente the qtdCliente to set
+     */
+    public void setQtdCliente(int qtdCliente) {
+        this.qtdCliente = qtdCliente;
+    }
+
+    /**
+     * @return the pedidos
+     */
+    public ArrayList <Item> getPedidos() {
+        return pedidos;
+    }
+
+    /**
+     * @param pedidos the pedidos to set
+     */
+    public void setPedidos(ArrayList <Item> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    /**
+     * @return the flagBalcao
+     */
+    public boolean isFlagBalcao() {
+        return flagBalcao;
+    }
+
+    /**
+     * @param flagBalcao the flagBalcao to set
+     */
+    public void setFlagBalcao(boolean flagBalcao) {
+        this.flagBalcao = flagBalcao;
+    }
+
+    /**
+     * @return the garcom
+     */
+    public Garcom getGarcom() {
+        return garcom;
+    }
+
+    /**
+     * @param garcom the garcom to set
+     */
+    public void setGarcom(Garcom garcom) {
+        this.garcom = garcom;
+    }
+
+    /**
+     * @return the statusConta
+     */
+    public boolean isStatusConta() {
+        return statusConta;
+    }
+
+    /**
+     * @param statusConta the statusConta to set
+     */
+    public void setStatusConta(boolean statusConta) {
+        this.statusConta = statusConta;
+    }
+
+    /**
+     * @return the cod
+     */
+    public int getCod() {
+        return cod;
+    }
+
+    /**
+     * @param cod the cod to set
+     */
+    public void setCod(int cod) {
+        this.cod = cod;
+    }
 }
