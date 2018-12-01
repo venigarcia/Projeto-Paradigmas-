@@ -4,93 +4,57 @@
  * and open the template in the editor.
  */
 package restaurante;
-
+import java.util.ArrayList;
 /**
  *
- * @author Val
+ * @author veniciusgarcia
  */
-import java.util.ArrayList;
-import java.util.Iterator;
 public class Restaurante {
+    private ArrayList <Cardapio> cardapio;
+    private ArrayList <Atendimento> atendimento;
 
+    public Restaurante() {
+        cardapio = new ArrayList();
+        atendimento = new ArrayList();
+    }
+
+    public ArrayList<Cardapio> getCardapio() {
+        return cardapio;
+    }
+
+    public void setCardapio(ArrayList<Cardapio> cardapio) {
+        this.cardapio = cardapio;
+    }
+
+    public ArrayList<Atendimento> getAtendimento() {
+        return atendimento;
+    }
+
+    public void setAtendimento(ArrayList<Atendimento> atendimento) {
+        this.atendimento = atendimento;
+    }
+
+    /*Recebe um objeto Atendimento "a",
+        ATENÇÃO essa função só é chamada quando o objeto mesa realiza a operação fecharConta()
+    */
+    public void addAtendimento(Atendimento a){
+        atendimento.add(a);
+    }
+    /*Recebe os dados necessários para criação de um objeto Cardapio
+        Essa função pode ser chamada através da classe Restaurante,
+        pois não cabe a nenhuma outra a inserção de objetos Cardapio no
+        ArrayList<Cardapio> senão Restaurante
+    */
+    public void addCardapio(int cod, String descricao, int preco){
+        Cardapio c = new Cardapio(cod, descricao, preco);
+        cardapio.add(c);
+    }
     /**
      * @param args the command line arguments
      */
-    protected Balcao balcao;
-    protected ArrayList <Mesa> mesa;
-    
-    public Restaurante(){
-        mesa = new ArrayList();        
-    }
-    
-    public void emitirRelatorioContaAberta(){
-        Iterator itCliente = balcao.cliente.iterator();
-        Iterator itPedido = balcao.pedido.iterator();
-        Iterator itMesa = mesa.iterator();        
-        Cliente cl = (Cliente) itCliente.next();
-        do{
-            if(cl.statusCliente){
-                Pedido p = (Pedido)itPedido.next();
-                do{
-                    if(p.codResponsavel == cl.cpf)
-                        System.out.println("CPF CLIENTE "+ cl.cpf +" Pedido"+ p.nome + p.preco);
-                }while(itPedido.hasNext());
-            }
-        }while(itCliente.hasNext());
-        
-        do{
-            Mesa  m =(Mesa)itMesa.next();           
-            if(m.statusConta){
-                Iterator itPedidoMesa = m.pedido.iterator();
-                do{
-                    Pedido p =(Pedido)itPedidoMesa.next();
-                    System.out.println("COD Mesa "+ m.cod +" Pedido"+ p.nome + p.preco);
-                }while(itPedidoMesa.hasNext());                
-                System.out.println();
-            }
-        }while(itMesa.hasNext());
-    }
-    
-    public void emitirTotalApuradoDia(){
-        Iterator itCliente = balcao.cliente.iterator();
-        Iterator itPedido = balcao.pedido.iterator();
-        Iterator itMesa = mesa.iterator();        
-        Cliente cl = (Cliente) itCliente.next();
-        do{
-            if(!cl.statusCliente){
-                Pedido p = (Pedido)itPedido.next();
-                do{
-                    if(p.codResponsavel == cl.cpf)
-                        System.out.println("CPF CLIENTE "+ cl.cpf +" Pedido"+ p.nome + p.preco);
-                }while(itPedido.hasNext());
-            }
-        }while(itCliente.hasNext());
-        
-        do{
-            Mesa  m =(Mesa)itMesa.next();           
-            if(!m.statusConta){
-                Iterator itPedidoMesa = m.pedido.iterator();
-                do{
-                    Pedido p =(Pedido)itPedidoMesa.next();
-                    System.out.println("COD Mesa "+ m.cod +" Pedido"+ p.nome + p.preco);
-                }while(itPedidoMesa.hasNext());                
-                System.out.println();
-            }
-        }while(itMesa.hasNext());
-        
-    }
-    public void emitirRelatorioDeGorjeta(){
-        Iterator itMesa = mesa.iterator();
-        do{
-            Mesa  m =(Mesa)itMesa.next();           
-            if(!m.statusConta){        
-                System.out.println("Cod Mesa: "+ m.cod + " Garçom"+ m.garcom.nome + "Gorjeta" + m.garcom.gorjeta);
-            }
-        }while(itMesa.hasNext());
-        System.out.println("Garçom: "+ balcao.garcom.nome + " Gorjeta: "+balcao.garcom.gorjeta);
-    }
+
     public static void main(String[] args) {
         // TODO code application logic here
     }
-    
+
 }

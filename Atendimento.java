@@ -4,74 +4,87 @@
  * and open the template in the editor.
  */
 package restaurante;
+
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
+
 /**
  *
  * @author veniciusgarcia
  */
 public class Atendimento {
-    protected ArrayList <Pedido> pedido;
-    protected Garcom garcom;
-    protected int qtdCliente;
-    protected boolean statusConta;
-    
-    public Atendimento(int qtdCliente, Garcom garcom){
-        pedido = new ArrayList();
-        this.qtdCliente = qtdCliente;
-        this.garcom = garcom;
-        statusConta = true;
+    private int cod_mesa;
+    private int cod_garcom;
+    private ArrayList <Item> pedido;
+    private Date data;
+    private double total;
+    private double gorjeta;
+    private int avaliacao;
+
+    public Atendimento(int cod_mesa, int cod_garcom, ArrayList<Item> pedido, Date data, double total, double gorjeta, int avaliacao) {
+        this.cod_mesa = cod_mesa;
+        this.cod_garcom = cod_garcom;
+        this.pedido = pedido;
+        this.data = data;
+        this.total = total;
+        this.gorjeta = gorjeta;
+        this.avaliacao = avaliacao;
     }
-    public double totalConta(int cod){
-        double total = 0;
-        Iterator it = pedido.iterator();
-        do{
-            Pedido p = (Pedido)it.next();
-            if(p.codResponsavel == cod)
-                total = total +p.preco;
-        }while(it.hasNext());
+
+    public int getCod_mesa() {
+        return cod_mesa;
+    }
+
+    public void setCod_mesa(int cod_mesa) {
+        this.cod_mesa = cod_mesa;
+    }
+
+    public int getCod_garcom() {
+        return cod_garcom;
+    }
+
+    public void setCod_garcom(int cod_garcom) {
+        this.cod_garcom = cod_garcom;
+    }
+
+    public ArrayList<Item> getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(ArrayList<Item> pedido) {
+        this.pedido = pedido;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public double getTotal() {
         return total;
     }
-    public double totalContaPorCliente(int cod){
-        double totalCliente;
-        totalCliente = totalConta(cod)/qtdCliente;
-        return totalCliente;
+
+    public void setTotal(double total) {
+        this.total = total;
     }
-    public double gorjetaGarcom(int cod){
-        double gorjeta;
-        gorjeta = totalConta(cod)*0.10;
-        garcom.gorjeta = gorjeta;
+
+    public double getGorjeta() {
         return gorjeta;
     }
-    public void addItemPedido(String nome, int qtd, int preco, int cod){
-        Pedido p = new Pedido(nome, qtd, preco, cod);
-        pedido.add(p);        
+
+    public void setGorjeta(double gorjeta) {
+        this.gorjeta = gorjeta;
     }
-    public void removeItemPedido(String nome, int cod){
-        boolean remove = false;
-        Iterator it = pedido.iterator();
-        do{
-            Pedido p = (Pedido)it.next();
-            if(p.nome.equals(nome)&& p.codResponsavel==cod){
-                pedido.remove(p);
-                remove = true;
-            }
-        }while(!remove && it.hasNext());
+
+    public int getAvaliacao() {
+        return avaliacao;
     }
-    public void imprimirConta(int cod){
-        Iterator it = pedido.iterator();
-        do{
-            Pedido p = (Pedido)it.next();
-            System.out.println("Pedido: "+p.nome);
-            System.out.println("Preco: "+p.preco);
-        }while(it.hasNext());
-        System.out.println("Valor total da conta: " + totalConta(cod));
-        System.out.println("Valor total da conta por Cliente: " + totalContaPorCliente(cod));
+
+    public void setAvaliacao(int avaliacao) {
+        this.avaliacao = avaliacao;
     }
-    public void fecharConta(int cod){
-        System.out.println("Gorjeta Garcom: "+gorjetaGarcom(cod));
-    }
-    public void totalizarConta(int cod){
-        
-    }
+
 }

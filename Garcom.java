@@ -10,12 +10,42 @@ package restaurante;
  * @author veniciusgarcia
  */
 public class Garcom {
-    protected String nome;
-    protected int cod;
-    protected double gorjeta;
-    
-    public Garcom(String nome){
+    private int cod;
+    private String nome;
+    private double gorjetaTotal;
+
+    public Garcom(int cod, String nome) {
+        this.cod = cod;
         this.nome = nome;
-        gorjeta = 0;
+        gorjetaTotal = 0;
+    }
+
+    public int getCod() {
+        return cod;
+    }
+
+    public void setCod(int cod) {
+        this.cod = cod;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getGorjetaTotal() {
+        return gorjetaTotal;
+    }
+
+    public void setGorjetaTotal(double gorjetaTotal) {
+        this.gorjetaTotal = gorjetaTotal;
+    }
+
+    public double totalizaDia(double gorjeta){
+        gorjetaTotal = gorjetaTotal+gorjeta;
+        return gorjetaTotal;
     }
 }
