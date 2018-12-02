@@ -12,10 +12,14 @@ import java.util.ArrayList;
 public class Restaurante {
     private ArrayList <Cardapio> cardapio;
     private ArrayList <Atendimento> atendimento;
-
+    private ArrayList <Mesa> mesas;
+    private ArrayList <Garcom> garcons;
+    
     public Restaurante() {
         cardapio = new ArrayList();
         atendimento = new ArrayList();
+        mesas = new ArrayList();
+        garcons = new ArrayList();
     }
 
     public ArrayList<Cardapio> getCardapio() {
@@ -49,6 +53,45 @@ public class Restaurante {
         Cardapio c = new Cardapio(cod, descricao, preco);
         cardapio.add(c);
     }
+    
+     /**
+     * @param qtdCliente
+     * @param flagBalcao
+     * @param garcom
+     */
+    public void addMesas(int qtdCliente, boolean flagBalcao, Garcom garcom){
+        Mesa mesa = new Mesa(qtdCliente, flagBalcao, garcom, mesas.size());
+        mesas.add(mesa);
+    }
+    public ArrayList <Mesa> getMesas() {
+        return mesas;
+    }
+
+    /**
+     * @param mesas the mesas to set
+     */
+    public void setMesas(ArrayList <Mesa> mesas) {
+        this.mesas = mesas;
+    }
+    
+    public void addGarcons(String nome){
+        Garcom garcom = new Garcom(garcons.size(), nome);
+        garcons.add(garcom);
+    }
+     /**
+     * @return the garcons
+     */
+    public ArrayList <Garcom> getGarcons() {
+        return garcons;
+    }
+
+    /**
+     * @param garcons the garcons to set
+     */
+    public void setGarcons(ArrayList <Garcom> garcons) {
+        this.garcons = garcons;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -56,5 +99,4 @@ public class Restaurante {
     public static void main(String[] args) {
         // TODO code application logic here
     }
-
 }
