@@ -157,7 +157,7 @@ public class Restaurante extends javax.swing.JFrame {
         setTotalCaixa();
     }
     
-    private void setTotalCaixa(){
+    public void setTotalCaixa(){
         this.atendimentos = this.restaurante.getAtendimento();
         for(int i = 0; i < this.atendimentos.size(); i++){
             this.totalValor+=this.atendimentos.get(i).getTotal();
@@ -504,7 +504,7 @@ public class Restaurante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPedidoMouseClicked
-        new NewPedido(this.restaurante).setVisible(true);
+        new NewPedido(this.restaurante, this).setVisible(true);
     }//GEN-LAST:event_newPedidoMouseClicked
 
     private void cadCardapioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadCardapioActionPerformed

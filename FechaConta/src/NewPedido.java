@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import model.RestauranteModel;
 import model.Cardapio;
 import model.Mesa;
+import model.Garcom;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,22 +17,25 @@ import model.Mesa;
  * @author carlos_vinicios
  */
 public class NewPedido extends javax.swing.JFrame {
-
     private DefaultListModel cardapioModel;
     private RestauranteModel restaurante;
     private ArrayList<Cardapio> cardapio;
     private ArrayList<Cardapio> itensSelecionados;
+    private ArrayList<Garcom> garcons;
     private ArrayList qtds;
+    private Restaurante mainGui;
 
     /**
      * Creates new form NewPedido
      */
-    public NewPedido(RestauranteModel restaurante) {
+    public NewPedido(RestauranteModel restaurante, Restaurante r) {
         initComponents();
         this.restaurante = restaurante;
         this.cardapio = this.restaurante.getCardapio();
+        this.garcons = this.restaurante.getGarcons();
         this.itensSelecionados = new ArrayList();
         this.qtds = new ArrayList();
+        this.mainGui = r;
         feedCardapioList();
     }
 
@@ -41,6 +45,7 @@ public class NewPedido extends javax.swing.JFrame {
         this.codGarcomText.setText(String.valueOf(codGarcom));
         this.codMesaText.setText(String.valueOf(codMesa));
         this.cardapio = this.restaurante.getCardapio();
+        this.garcons = this.restaurante.getGarcons();
         this.itensSelecionados = new ArrayList();
         this.qtds = new ArrayList();
         feedCardapioList();
@@ -226,6 +231,7 @@ public class NewPedido extends javax.swing.JFrame {
         int i, codMesa;
         String label = "Deseja adicionar os seguintes intens?\n";
         Mesa mesa = null;
+        Garcom garcom = null;
         ArrayList<Mesa> mesas = this.restaurante.getMesas();
         if (this.itensSelecionados.size() > 0) {
             for (i = 0; i < this.itensSelecionados.size(); i++) {
@@ -247,9 +253,26 @@ public class NewPedido extends javax.swing.JFrame {
                         }
                     }
                 } else {
-                    //procura o código do garcom;
-                    //mesa = new Mesa(1, true, , 100);
-                    //fecha a conta da mesa
+                    String codGarcom = this.codGarcomText.getText();
+                    if (!"".equals(codGarcom)) {
+                        for (i = 0; i < this.garcons.size(); i++) {
+                            if (this.garcons.get(i).getCod() == Integer.parseInt(codGarcom)) {
+                                garcom = this.garcons.get(i);
+                                break;
+                            }
+                        }
+                        mesa = new Mesa(1, true, garcom, 100);
+                        for (i = 0; i < this.itensSelecionados.size(); i++) {
+                            mesa.addItem(this.cardapio, this.itensSelecionados.get(i).getCod(), (int) this.qtds.get(i));
+                        }
+                        String resp = JOptionPane.showInputDialog(null, "Quanto gostou do atendimento:\n1-Péssimo\n2-Ruim\n3-Médio\n4-Bom\n5-Muito Bom", "Avaliação", -1);
+                        if (resp != null && !"".equals(resp)) {
+                            mesa.fecharConta(this.restaurante, Integer.parseInt(resp));
+                            this.restaurante.gravarAtendimentos();
+                            this.mainGui.setTotalCaixa();
+                            this.dispose();
+                        }
+                    }
                 }
                 this.dispose();
             }

@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package model;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author veniciusgarcia
@@ -92,16 +94,10 @@ public class RestauranteModel {
         this.garcons = garcons;
     }
     
-    /**
-     * @param garcon the garcon to remove
-     */
-    public void removeGarcon(Garcom garcon){
-        this.garcons.remove(garcon);
-    }
-    
     public void gravarAtendimentos(){
         int i,j;
         Arquivo arquivo = new Arquivo("Atendimentos");
+        arquivo.refresh();
         for(i=0; i<this.atendimento.size();i++){
             arquivo.escrever(atendimento.get(i).getCod_garcom() + "");
             arquivo.escrever(atendimento.get(i).getCod_mesa() + "");
@@ -124,6 +120,7 @@ public class RestauranteModel {
     public void gravarCardapio(){
         int i,j;
         Arquivo arquivo = new Arquivo("Cardapio");
+        arquivo.refresh();
         for(i=0; i<this.cardapio.size();i++){
             arquivo.escrever(cardapio.get(i).getCod() + "");
             arquivo.escrever(cardapio.get(i).getDecricao() + "");
@@ -134,10 +131,11 @@ public class RestauranteModel {
     public void gravarGarcons(){
         int i,j;
         Arquivo arquivo = new Arquivo("Garcons");
+        arquivo.refresh();
         for(i=0; i<this.garcons.size();i++){
             arquivo.escrever(garcons.get(i).getCod() + ""); //codigo
             arquivo.escrever(garcons.get(i).getNome() + ""); // nome
-            //arquivo.escrever(garcons.get(i).getGorjetaTotal() + ""); // gorgeta total
+            arquivo.escrever(garcons.get(i).getGorjetaTotal() + ""); // gorgeta total
         }
     }
     
@@ -155,49 +153,4 @@ public class RestauranteModel {
         Arquivo arquivo = new Arquivo("Garcons");
         garcons = arquivo.lerGarcons();
     }
-    /**
-     * @param args the command line arguments
-     */
-
-    //public static void main(String[] args) {
-        //criando um restaurante para testes
-        
-        
-//        Restaurante restaurante = new Restaurante();
-//        ArrayList <Item> pedido = new ArrayList();
-//        pedido.add(new Item(42, 4, 5));
-//        pedido.add(new Item(23, 6, 2));
-//        pedido.add(new Item(12, 1, 25));
-//        Date data = new Date();
-//        Atendimento atendimento = new Atendimento(1,1, pedido, data, 1000, 10, 9);
-//        restaurante.addGarcons("joao");
-//        restaurante.addCardapio(0, "feijao delicioso", 10);
-//        restaurante.addAtendimento(atendimento);
-        
-        
-        
-        //gravando no arquivo
-        
-        
-//        restaurante.gravarAtendimentos();
-//        restaurante.gravarCardapio();
-//        restaurante.gravarGarcons();
-
-        
-        //resgatando variaveis do arquivo ja gravado
-        
-        
-//        restaurante.resgatarAtendimentos();
-//        restaurante.resgatarCardapio();
-//        restaurante.resgatarGarcons();
-        
-        
-        //testando as variaveis resgatadas
-        
-        
-//        System.out.println("total do atendimento: " + restaurante.getAtendimento().get(0).getTotal());
-//        System.out.println("descricao do cardapio: " + restaurante.getCardapio().get(0).getDecricao());
-//        System.out.println("nome do garcon: " + restaurante.getGarcons().get(0).getNome());
-    
-    //}
 }
