@@ -35,6 +35,32 @@ public class Arquivo {
             ex.printStackTrace();
         }
     }
+    public void gerarCupon(Mesa mesa, Arquivo arquivo){ //mesa, cuponsFiscais/c
+        try {
+            if (!this.arquivo.exists()) {
+                this.arquivo.createNewFile();
+            }
+            FileWriter fw = new FileWriter(this.arquivo, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("Codigo da mesa: " + mesa.getCod());
+            bw.write("Garcon: " + mesa.getGarcom().getNome());
+            bw.write("Numero de clientes: " + mesa.getQtdCliente());
+            for(int i=0;i < mesa.getPedidos().size(); i++){
+                bw.write("Pedido numero " + i+1);
+                bw.write("Codigo: " + mesa.getPedidos().get(i).getCod());
+                bw.write("Nome: " + mesa.getPedidos().get(i).getNome());
+                bw.write("Preco: R$" + mesa.getPedidos().get(i).getPreco());
+                bw.write("Quantidade: " + mesa.getPedidos().get(i).getQtd());
+                bw.write("Total: R$" + mesa.getPedidos().get(i).getPrecoTotal());
+            }
+            bw.newLine();
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+    }
     public void escrever(String texto){ //escreve no arquivo
         try {
             if (!this.arquivo.exists()) {
@@ -53,7 +79,7 @@ public class Arquivo {
     public ArrayList<Atendimento> lerAtendimentos(){
         int i, j;
         ArrayList<Item> pedido = new ArrayList();
-        Date data = new Date();
+        String data;
         
         ArrayList<Atendimento> atendimentos = new ArrayList();
         try{
@@ -67,6 +93,7 @@ public class Arquivo {
                 float cod_mesa = Float.parseFloat(linha);
 
                 linha = br.readLine();
+                data = linha;
 
                 linha = br.readLine();
                 float avaliacao = Float.parseFloat(linha);
@@ -79,7 +106,10 @@ public class Arquivo {
                 for(i=0;i< j; i++){
                     linha = br.readLine();
                     float cod = Float.parseFloat(linha);
-
+                    
+                    linha = br.readLine();
+                    String nome = linha;
+                    
                     linha = br.readLine();
                     float preco = Float.parseFloat(linha);
                     
@@ -89,7 +119,7 @@ public class Arquivo {
                     linha = br.readLine();
                     float precoTotal = Float.parseFloat(linha);
                     
-                    Item item = new Item( (int) cod,  (int)qtd,  (int)preco);
+                    Item item = new Item( (int) cod,  (int)qtd,  (int)preco, nome);
                     pedido.add(item);
                     
                 }

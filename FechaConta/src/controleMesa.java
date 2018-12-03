@@ -180,6 +180,7 @@ public class controleMesa extends javax.swing.JFrame {
         if (resp != null && !"".equals(resp)) {
             this.mesa.fecharConta(this.restaurante, Integer.parseInt(resp));
             this.restaurante.gravarAtendimentos();
+            this.restaurante.gravarGarcons();
             this.mainGui.liberarMesa(this.index);
             this.dispose();
         }

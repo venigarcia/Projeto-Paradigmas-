@@ -5,6 +5,7 @@
  */
 package model;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 /**
@@ -101,7 +102,7 @@ public class RestauranteModel {
         for(i=0; i<this.atendimento.size();i++){
             arquivo.escrever(atendimento.get(i).getCod_garcom() + "");
             arquivo.escrever(atendimento.get(i).getCod_mesa() + "");
-            arquivo.escrever(atendimento.get(i).getData().toString()+ "");
+            arquivo.escrever(atendimento.get(i).getData());
             arquivo.escrever(atendimento.get(i).getAvaliacao() + "");
             arquivo.escrever(atendimento.get(i).getGorjeta() + "");
             if(this.atendimento.get(i).getPedido().size() > 0)
@@ -109,6 +110,7 @@ public class RestauranteModel {
             else arquivo.escrever("0");
             for(j=0; j< this.atendimento.get(i).getPedido().size(); j++){
                 arquivo.escrever(atendimento.get(i).getPedido().get(j).getCod() + "");
+                arquivo.escrever(atendimento.get(i).getPedido().get(j).getNome() + "");
                 arquivo.escrever(atendimento.get(i).getPedido().get(j).getPreco() + "");
                 arquivo.escrever(atendimento.get(i).getPedido().get(j).getQtd() + "");
                 arquivo.escrever(atendimento.get(i).getPedido().get(j).getPrecoTotal() + "");
@@ -152,5 +154,12 @@ public class RestauranteModel {
     public void resgatarGarcons(){
         Arquivo arquivo = new Arquivo("Garcons");
         garcons = arquivo.lerGarcons();
+    }
+    
+    public void gerarCupon(Mesa mesa){
+        Date d = new Date(System.currentTimeMillis());
+        String data = new SimpleDateFormat("dd/MM/yyyy").format(d);
+        Arquivo arquivo = new Arquivo("cuponsFiscais/CuponsDia(" + data + ").txt" );
+        arquivo.gerarCupon(mesa, arquivo);
     }
 }

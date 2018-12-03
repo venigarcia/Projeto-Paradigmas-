@@ -14,12 +14,21 @@ public class Item {
     private int qtd;
     private float preco;
     private float precoTotal;
+    private String nome;
 
-    public Item(int cod, int qtd, float preco){
+    public Item(int cod, int qtd, float preco, String nome){
         this.cod = cod;
         this.qtd = qtd;
         this.preco = preco;
         precoTotal = this.preco * this.qtd;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public int getCod() {

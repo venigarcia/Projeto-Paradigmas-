@@ -1,13 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author carlos_vinicios
- */
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,7 +8,18 @@ import model.Garcom;
 import model.Atendimento;
 import java.util.ArrayList;
 import javax.swing.SwingUtilities;
+import java.util.Random;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author carlos_vinicios
+ */
 public class Restaurante extends javax.swing.JFrame {
 
     private RestauranteModel restaurante;
@@ -176,7 +177,9 @@ public class Restaurante extends javax.swing.JFrame {
                 respQtd = selecQtdClientes();
                 if (respQtd > 0) {
                     this.indexsMesas[index] = this.restaurante.getMesas().size();
-                    this.restaurante.addMesas(respQtd, false, garcom, 101);
+                    Random rand = new Random();
+                    int cod = 100 + rand.nextInt(1000);
+                    this.restaurante.addMesas(respQtd, false, garcom, cod);
                     changeMesaStatus(index, false);
                     this.stateMesas[index] = true;
                 }
@@ -184,6 +187,7 @@ public class Restaurante extends javax.swing.JFrame {
         } else {
             this.mesas = this.restaurante.getMesas();
             if (SwingUtilities.isRightMouseButton(evt)) {
+                System.out.println(this.mesas.get(this.indexsMesas[index]).getCod());
                 new controleMesa(this.restaurante, this, this.mesas.get(this.indexsMesas[index]), index).setVisible(true);
             } else {
                 new NewPedido(this.restaurante, this.mesas.get(this.indexsMesas[index]).getCod(), this.mesas.get(this.indexsMesas[index]).getGarcom().getCod()).setVisible(true);

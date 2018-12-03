@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package model;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -59,7 +60,7 @@ public class Mesa {
         do{
             Cardapio c = (Cardapio)it.next();
             if(c.getCod() == cod){
-                Item i = new Item( cod, qtd, c.getPreco());
+                Item i = new Item( cod, qtd, c.getPreco(), c.getDecricao());
                 getPedidos().add(i);
                 break;
             }
@@ -94,7 +95,8 @@ public class Mesa {
     public void fecharConta(RestauranteModel r, int aval){
         getGarcom().totalizaDia(calcGorjeta());
         setStatusConta(false);
-        Date data = new Date(System.currentTimeMillis());
+        Date d = new Date(System.currentTimeMillis());
+        String data = new SimpleDateFormat("dd/MM/yyyy").format(d);
         Atendimento a = new Atendimento(getCod(), getGarcom().getCod(), getPedidos(), data, totalConta(), calcGorjeta(), aval);
         r.addAtendimento(a);
     }

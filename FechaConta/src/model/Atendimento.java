@@ -16,12 +16,12 @@ public class Atendimento {
     private int cod_mesa;
     private int cod_garcom;
     private ArrayList <Item> pedido;
-    private Date data;
+    private String data;
     private double total;
     private double gorjeta;
     private int avaliacao;
 
-    public Atendimento(int cod_mesa, int cod_garcom, ArrayList<Item> pedido, Date data, double total, double gorjeta, int avaliacao) {
+    public Atendimento(int cod_mesa, int cod_garcom, ArrayList<Item> pedido, String data, double total, double gorjeta, int avaliacao) {
         this.cod_mesa = cod_mesa;
         this.cod_garcom = cod_garcom;
         this.pedido = pedido;
@@ -55,11 +55,11 @@ public class Atendimento {
         this.pedido = pedido;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
