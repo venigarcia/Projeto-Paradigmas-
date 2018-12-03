@@ -86,5 +86,5 @@ public class Atendimento {
     public void setAvaliacao(int avaliacao) {
         this.avaliacao = avaliacao;
     }
-
+    
 }

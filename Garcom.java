@@ -48,4 +48,5 @@ public class Garcom {
         gorjetaTotal = gorjetaTotal+gorjeta;
         return gorjetaTotal;
     }
+
 }

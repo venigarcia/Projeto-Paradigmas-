@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package restaurante;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 /**
  *
  * @author veniciusgarcia
@@ -98,22 +96,21 @@ public class Restaurante {
         int i,j;
         Arquivo arquivo = new Arquivo("Atendimentos");
         for(i=0; i<this.atendimento.size();i++){
-            arquivo.escrever("///////////////////////////////////////////");
-            arquivo.escrever("Atendimento " + i+1 + "\n");
-            arquivo.escrever("Codigo do garcom: "+ atendimento.get(i).getCod_garcom());
-            arquivo.escrever("Codigo da mesa: "+ atendimento.get(i).getCod_mesa());
-            arquivo.escrever("Data: "+ atendimento.get(i).getData().toString());
-            arquivo.escrever("Avaliacao: "+ atendimento.get(i).getAvaliacao());
-            arquivo.escrever("Gorgeta: "+ atendimento.get(i).getGorjeta() + "\n");
+            arquivo.escrever(atendimento.get(i).getCod_garcom() + "");
+            arquivo.escrever(atendimento.get(i).getCod_mesa() + "");
+            arquivo.escrever(atendimento.get(i).getData().toString()+ "");
+            arquivo.escrever(atendimento.get(i).getAvaliacao() + "");
+            arquivo.escrever(atendimento.get(i).getGorjeta() + "");
+            if(this.atendimento.get(i).getPedido().size() > 0)
+                arquivo.escrever(this.atendimento.get(i).getPedido().size() + "");
+            else arquivo.escrever("0");
             for(j=0; j< this.atendimento.get(i).getPedido().size(); j++){
-                arquivo.escrever("Pedido numero "+ j+1);
-                arquivo.escrever("Codigo do Pedido: "+ atendimento.get(i).getPedido().get(j).getCod());
-                arquivo.escrever("Preco: "+ atendimento.get(i).getPedido().get(j).getPreco());
-                arquivo.escrever("Quantidade: "+ atendimento.get(i).getPedido().get(j).getQtd());
-                arquivo.escrever("Preco total: "+ atendimento.get(i).getPedido().get(j).getPrecoTotal());
-                arquivo.escrever("\n");
+                arquivo.escrever(atendimento.get(i).getPedido().get(j).getCod() + "");
+                arquivo.escrever(atendimento.get(i).getPedido().get(j).getPreco() + "");
+                arquivo.escrever(atendimento.get(i).getPedido().get(j).getQtd() + "");
+                arquivo.escrever(atendimento.get(i).getPedido().get(j).getPrecoTotal() + "");
             }
-            arquivo.escrever("Total da conta: "+ atendimento.get(i).getTotal());
+            arquivo.escrever(atendimento.get(i).getTotal() + "");
         }
     }
     
@@ -121,11 +118,9 @@ public class Restaurante {
         int i,j;
         Arquivo arquivo = new Arquivo("Cardapio");
         for(i=0; i<this.cardapio.size();i++){
-            arquivo.escrever("///////////////////////////////////////////");
-            arquivo.escrever("cardapio " + i+1 + "\n");
-            arquivo.escrever("Codigo do cardapio: "+ cardapio.get(i).getCod());
-            arquivo.escrever("Descricao: "+ cardapio.get(i).getDecricao());
-            arquivo.escrever("Preco : "+ cardapio.get(i).getPreco());
+            arquivo.escrever(cardapio.get(i).getCod() + "");
+            arquivo.escrever(cardapio.get(i).getDecricao() + "");
+            arquivo.escrever(cardapio.get(i).getPreco() + "");
         }
     }
     
@@ -133,32 +128,69 @@ public class Restaurante {
         int i,j;
         Arquivo arquivo = new Arquivo("Garcons");
         for(i=0; i<this.garcons.size();i++){
-            arquivo.escrever("///////////////////////////////////////////");
-            arquivo.escrever("Garcon " + i+1 + "\n");
-            arquivo.escrever("Codigo do garcon: "+ garcons.get(i).getCod());
-            arquivo.escrever("Nome: "+ garcons.get(i).getNome());
-            arquivo.escrever("Gorgeta total : "+ garcons.get(i).getGorjetaTotal());
+            arquivo.escrever(garcons.get(i).getCod() + ""); //codigo
+            arquivo.escrever(garcons.get(i).getNome() + ""); // nome
+            arquivo.escrever(garcons.get(i).getGorjetaTotal() + ""); // gorgeta total
         }
     }
     
-    public void lerAtendimentos(){
+    public void resgatarAtendimentos(){
         Arquivo arquivo = new Arquivo("Atendimentos");
-        arquivo.ler();
+        atendimento = arquivo.lerAtendimentos();
     }
-    public void lerCardapio(){
+    
+    public void resgatarCardapio(){
         Arquivo arquivo = new Arquivo("Cardapio");
-        arquivo.ler();
+        cardapio = arquivo.lerCardapio();
     }
-    public void lerGarcons(){
+    
+    public void resgatarGarcons(){
         Arquivo arquivo = new Arquivo("Garcons");
-        arquivo.ler();
+        garcons = arquivo.lerGarcons();
     }
     /**
      * @param args the command line arguments
      */
 
     public static void main(String[] args) {
-        //TODO code application logic here
-    }
+        //criando um restaurante para testes
+        
+        
+//        Restaurante restaurante = new Restaurante();
+//        ArrayList <Item> pedido = new ArrayList();
+//        pedido.add(new Item(42, 4, 5));
+//        pedido.add(new Item(23, 6, 2));
+//        pedido.add(new Item(12, 1, 25));
+//        Date data = new Date();
+//        Atendimento atendimento = new Atendimento(1,1, pedido, data, 1000, 10, 9);
+//        restaurante.addGarcons("joao");
+//        restaurante.addCardapio(0, "feijao delicioso", 10);
+//        restaurante.addAtendimento(atendimento);
+        
+        
+        
+        //gravando no arquivo
+        
+        
+//        restaurante.gravarAtendimentos();
+//        restaurante.gravarCardapio();
+//        restaurante.gravarGarcons();
 
+        
+        //resgatando variaveis do arquivo ja gravado
+        
+        
+//        restaurante.resgatarAtendimentos();
+//        restaurante.resgatarCardapio();
+//        restaurante.resgatarGarcons();
+        
+        
+        //testando as variaveis resgatadas
+        
+        
+//        System.out.println("total do atendimento: " + restaurante.getAtendimento().get(0).getTotal());
+//        System.out.println("descricao do cardapio: " + restaurante.getCardapio().get(0).getDecricao());
+//        System.out.println("nome do garcon: " + restaurante.getGarcons().get(0).getNome());
+    
+    }
 }
