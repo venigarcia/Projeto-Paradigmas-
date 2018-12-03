@@ -24,17 +24,28 @@ public class Arquivo {
     Arquivo(String nome){
         this.arquivo = new File(nome + ".txt");
     }
+    
+    public void refresh(){
+        try {
+            if (this.arquivo.exists()) {
+                this.arquivo.delete();
+                this.arquivo.createNewFile();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     public void escrever(String texto){ //escreve no arquivo
         try {
-            if (!this.arquivo.exists()) {                
-                    this.arquivo.createNewFile();
-                }
-                FileWriter fw = new FileWriter(this.arquivo, true);
-                BufferedWriter bw = new BufferedWriter(fw);
-                bw.write(texto);
-                bw.newLine();
-                bw.close();
-                fw.close();
+            if (!this.arquivo.exists()) {
+                this.arquivo.createNewFile();
+            }
+            FileWriter fw = new FileWriter(this.arquivo, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(texto);
+            bw.newLine();
+            bw.close();
+            fw.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -53,7 +64,7 @@ public class Arquivo {
                 float cod_garcom = Float.parseFloat(linha);
 
                 linha = br.readLine();
-                int cod_mesa = Integer.parseInt(linha);
+                float cod_mesa = Float.parseFloat(linha);
 
                 linha = br.readLine();
 
@@ -61,7 +72,7 @@ public class Arquivo {
                 float avaliacao = Float.parseFloat(linha);
 
                 linha = br.readLine();
-                double gorjeta = Double.parseDouble(linha);
+                float gorjeta = Float.parseFloat(linha);
 
                 linha = br.readLine();
                 j =  Integer.parseInt(linha);
@@ -85,7 +96,7 @@ public class Arquivo {
                 linha = br.readLine();
                 float total = Float.parseFloat(linha);
                 
-                Atendimento atendimento = new Atendimento(cod_mesa, (int)cod_garcom, pedido,data, total, gorjeta, (int)avaliacao);
+                Atendimento atendimento = new Atendimento((int) cod_mesa, (int)cod_garcom, pedido,data, (double) total, (double) gorjeta, (int)avaliacao);
                 atendimentos.add(atendimento);
             }
             br.close();

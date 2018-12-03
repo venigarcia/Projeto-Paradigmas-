@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package restaurante;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author veniciusgarcia
@@ -95,6 +97,7 @@ public class Restaurante {
     public void gravarAtendimentos(){
         int i,j;
         Arquivo arquivo = new Arquivo("Atendimentos");
+        arquivo.refresh();
         for(i=0; i<this.atendimento.size();i++){
             arquivo.escrever(atendimento.get(i).getCod_garcom() + "");
             arquivo.escrever(atendimento.get(i).getCod_mesa() + "");
@@ -117,6 +120,7 @@ public class Restaurante {
     public void gravarCardapio(){
         int i,j;
         Arquivo arquivo = new Arquivo("Cardapio");
+        arquivo.refresh();
         for(i=0; i<this.cardapio.size();i++){
             arquivo.escrever(cardapio.get(i).getCod() + "");
             arquivo.escrever(cardapio.get(i).getDecricao() + "");
@@ -127,6 +131,7 @@ public class Restaurante {
     public void gravarGarcons(){
         int i,j;
         Arquivo arquivo = new Arquivo("Garcons");
+        arquivo.refresh();
         for(i=0; i<this.garcons.size();i++){
             arquivo.escrever(garcons.get(i).getCod() + ""); //codigo
             arquivo.escrever(garcons.get(i).getNome() + ""); // nome
