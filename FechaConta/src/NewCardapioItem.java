@@ -1,3 +1,7 @@
+import java.util.Random;
+import model.RestauranteModel;
+import model.Cardapio;
+import java.util.ArrayList;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +13,31 @@
  * @author carlos_vinicios
  */
 public class NewCardapioItem extends javax.swing.JFrame {
-
+    private RestauranteModel restaurante;
+    private Boolean alterar = false;
+    private ArrayList<Cardapio> cardapio;
+    private int indexAlter;
+    
     /**
      * Creates new form NewCardapioItem
      */
-    public NewCardapioItem() {
+    public NewCardapioItem(RestauranteModel restaurante) {
         initComponents();
+        Random rand = new Random();
+        int cod = 1000 + rand.nextInt(1000);
+        this.codText.setText(String.valueOf(cod));
+        this.restaurante = restaurante;
+    }
+    
+    public NewCardapioItem(RestauranteModel restaurante, int index){
+        initComponents();
+        this.restaurante = restaurante;
+        this.cardapio = this.restaurante.getCardapio();
+        this.alterar = true;
+        this.codText.setText(String.valueOf(this.cardapio.get(index).getCod()));
+        this.descText.setText(this.cardapio.get(index).getDecricao());
+        this.precoText.setText(String.valueOf(this.cardapio.get(index).getPreco()));
+        this.indexAlter = index;
     }
 
     /**
@@ -36,7 +59,7 @@ public class NewCardapioItem extends javax.swing.JFrame {
         salvarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(470, 382));
         setMinimumSize(new java.awt.Dimension(470, 382));
         setPreferredSize(new java.awt.Dimension(470, 362));
@@ -60,11 +83,21 @@ public class NewCardapioItem extends javax.swing.JFrame {
         salvarButton.setMaximumSize(new java.awt.Dimension(85, 40));
         salvarButton.setMinimumSize(new java.awt.Dimension(85, 40));
         salvarButton.setPreferredSize(new java.awt.Dimension(85, 40));
+        salvarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarButtonActionPerformed(evt);
+            }
+        });
 
         cancelarButton.setText("Cancelar");
         cancelarButton.setMaximumSize(new java.awt.Dimension(85, 40));
         cancelarButton.setMinimumSize(new java.awt.Dimension(85, 40));
         cancelarButton.setPreferredSize(new java.awt.Dimension(85, 40));
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,40 +153,23 @@ public class NewCardapioItem extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewCardapioItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewCardapioItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewCardapioItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewCardapioItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelarButtonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewCardapioItem().setVisible(true);
-            }
-        });
-    }
+    private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButtonActionPerformed
+        String codItem = this.codText.getText();
+        String descricao = this.descText.getText();
+        String preco = this.precoText.getText();
+        if(!alterar){
+            this.restaurante.addCardapio(Integer.parseInt(codItem), descricao, Float.parseFloat(preco));
+        }else{
+            this.cardapio.get(this.indexAlter).setDecricao(descricao);
+            this.cardapio.get(this.indexAlter).setPreco(Float.parseFloat(preco));
+        }
+        this.restaurante.gravarCardapio();
+        this.dispose();
+    }//GEN-LAST:event_salvarButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarButton;

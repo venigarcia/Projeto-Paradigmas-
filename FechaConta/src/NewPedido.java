@@ -1,42 +1,73 @@
+
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import model.RestauranteModel;
+import model.Cardapio;
+import model.Mesa;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author carlos_vinicios
  */
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
-import java.util.ArrayList;
-
 public class NewPedido extends javax.swing.JFrame {
+
     private DefaultListModel cardapioModel;
+    private RestauranteModel restaurante;
+    private ArrayList<Cardapio> cardapio;
+    private ArrayList<Cardapio> itensSelecionados;
+    private ArrayList qtds;
+
     /**
      * Creates new form NewPedido
      */
-    public NewPedido() {
+    public NewPedido(RestauranteModel restaurante) {
         initComponents();
+        this.restaurante = restaurante;
+        this.cardapio = this.restaurante.getCardapio();
+        this.itensSelecionados = new ArrayList();
+        this.qtds = new ArrayList();
         feedCardapioList();
     }
-    
-    private void feedCardapioList(){
+
+    public NewPedido(RestauranteModel restaurante, int codMesa, int codGarcom) {
+        initComponents();
+        this.restaurante = restaurante;
+        this.codGarcomText.setText(String.valueOf(codGarcom));
+        this.codMesaText.setText(String.valueOf(codMesa));
+        this.cardapio = this.restaurante.getCardapio();
+        this.itensSelecionados = new ArrayList();
+        this.qtds = new ArrayList();
+        feedCardapioList();
+    }
+
+    private void feedCardapioList() {
+        String text;
         this.cardapioModel = new DefaultListModel();
         this.cardapioList.setModel(cardapioModel);
-        //substituir essa parte pelo retorno dado pela classe
-        cardapioModel.addElement("1245 - Hamburguer");
-        cardapioModel.addElement("6724 - Cachorro Quente");
-        cardapioModel.addElement("8754 - Espaguete");
-        cardapioModel.addElement("6589 - Lasanha");
-        cardapioModel.addElement("4523 - Pizza");
-        cardapioModel.addElement("8744 - Carne de Sol");
-        cardapioModel.addElement("8541 - Frango a passarinha");
-        cardapioModel.addElement("2487 - Torta de camarão");
-        cardapioModel.addElement("2494 - Torta de carne");
-        cardapioModel.addElement("6849 - Feijoada");
+        for (int i = 0; i < this.cardapio.size(); i++) {
+            text = this.cardapio.get(i).getCod() + " - " + this.cardapio.get(i).getDecricao() + " - " + this.cardapio.get(i).getPreco();
+            cardapioModel.addElement(text);
+        }
     }
+
+    private ArrayList selecaoParam(String textBusca) {
+        int i;
+        ArrayList busca = new ArrayList(); //cria um array para armazenar o resultado da busca
+        for (i = 0; i < cardapioModel.size(); i++) { //realiza a busca dentro do model
+            String item = (String) this.cardapioModel.get(i);
+            if (item.contains(textBusca)) {
+                busca.add(i);
+            }
+        }
+        return busca;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,6 +88,9 @@ public class NewPedido extends javax.swing.JFrame {
         jcardapioLabel1 = new javax.swing.JLabel();
         buscarjButton = new javax.swing.JButton();
         buscarText = new javax.swing.JTextField();
+        adicionarjButton = new javax.swing.JButton();
+        quantidadeSpinner = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Pedido");
@@ -73,6 +107,9 @@ public class NewPedido extends javax.swing.JFrame {
         mesajLabel.setToolTipText("");
 
         savejButton.setText("Salvar");
+        savejButton.setMaximumSize(new java.awt.Dimension(85, 40));
+        savejButton.setMinimumSize(new java.awt.Dimension(85, 40));
+        savejButton.setPreferredSize(new java.awt.Dimension(85, 40));
         savejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 savejButtonActionPerformed(evt);
@@ -80,12 +117,16 @@ public class NewPedido extends javax.swing.JFrame {
         });
 
         canceljButton.setText("Cancelar");
+        canceljButton.setMaximumSize(new java.awt.Dimension(85, 40));
+        canceljButton.setMinimumSize(new java.awt.Dimension(85, 40));
+        canceljButton.setPreferredSize(new java.awt.Dimension(85, 40));
         canceljButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 canceljButtonMouseClicked(evt);
             }
         });
 
+        cardapioList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(cardapioList);
 
         jcardapioLabel1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
@@ -98,10 +139,25 @@ public class NewPedido extends javax.swing.JFrame {
             }
         });
 
+        adicionarjButton.setText("Adicionar");
+        adicionarjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarjButtonActionPerformed(evt);
+            }
+        });
+
+        quantidadeSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+
+        jLabel3.setText("Quantidade");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jcardapioLabel1)
+                .addGap(192, 192, 192))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,22 +169,24 @@ public class NewPedido extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(codMesaText)
-                            .addComponent(codGarcomText)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(savejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(canceljButton)
-                                .addGap(0, 130, Short.MAX_VALUE))))
+                            .addComponent(codGarcomText)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(buscarText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarjButton)))
+                        .addComponent(buscarjButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(6, 6, 6)
+                        .addComponent(quantidadeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(adicionarjButton)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(savejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(canceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 120, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jcardapioLabel1)
-                .addGap(192, 192, 192))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,10 +207,15 @@ public class NewPedido extends javax.swing.JFrame {
                     .addComponent(buscarjButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(savejButton)
-                    .addComponent(canceljButton))
+                    .addComponent(adicionarjButton)
+                    .addComponent(quantidadeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(savejButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(canceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -160,83 +223,71 @@ public class NewPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
-        //aqui fica todo o código de captura dos itens selecionados e campos de textos
+        int i, codMesa;
+        String label = "Deseja adicionar os seguintes intens?\n";
+        Mesa mesa = null;
+        ArrayList<Mesa> mesas = this.restaurante.getMesas();
+        if (this.itensSelecionados.size() > 0) {
+            for (i = 0; i < this.itensSelecionados.size(); i++) {
+                label = label + this.itensSelecionados.get(i).getCod() + " - " + this.itensSelecionados.get(i).getDecricao() + " - " + this.itensSelecionados.get(i).getPreco() + " - qtd: " + this.qtds.get(i) + "\n";
+            }
+            if (JOptionPane.showConfirmDialog(null, label, "Adicionar itens",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                if (!"".equals(this.codMesaText.getText())) {
+                    codMesa = Integer.parseInt(this.codMesaText.getText());
+                    for (i = 0; i < mesas.size(); i++) {
+                        if (mesas.get(i).getCod() == codMesa) {
+                            mesa = mesas.get(i);
+                            break;
+                        }
+                    }
+                    if (mesa != null) {
+                        for (i = 0; i < this.itensSelecionados.size(); i++) {
+                            mesa.addItem(this.cardapio, this.itensSelecionados.get(i).getCod(), (int) this.qtds.get(i));
+                        }
+                    }
+                } else {
+                    //procura o código do garcom;
+                    //mesa = new Mesa(1, true, , 100);
+                    //fecha a conta da mesa
+                }
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_savejButtonActionPerformed
 
     private void canceljButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canceljButtonMouseClicked
         this.dispose();
     }//GEN-LAST:event_canceljButtonMouseClicked
-    
-    private ArrayList selecaoParam(String textBusca){
-        int i;
-        ArrayList busca = new ArrayList(); //cria um array para armazenar o resultado da busca
-        for(i=0; i < cardapioModel.size(); i++){ //realiza a busca dentro do model
-            String item = (String) this.cardapioModel.get(i);
-            if(item.contains(textBusca)){
-                busca.add(i);
-            }
-        }
-        return busca;
-    }
-    
+
     private void buscarjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarjButtonActionPerformed
         //filtra a lista com base no código ou texto dado
         String textBusca = this.buscarText.getText();
         String option;
-        int i, j;
+        int i;
         ArrayList resp;
-        int[] itens = new int[this.cardapioList.getSelectedIndices().length + 1]; //cria um vetor para armazenar os indices já selecionados
-        for(i=0;i<this.cardapioList.getSelectedIndices().length; i++) //joga todos os indices anteriores para o novo array
-            itens[i] = this.cardapioList.getSelectedIndices()[i];
         resp = selecaoParam(textBusca);
-        if( resp.size() > 1){
+        if (resp.size() > 1) {
             String textMessage = "Foram encontrados mais de uma referência para busca, selecione e digite o código correspondente:\n";
-            for(j=0; j < resp.size(); j++)
-                textMessage = textMessage + cardapioModel.get((int)resp.get(j)) + "\n";
-            option = JOptionPane.showInputDialog(textMessage);
+            for (i = 0; i < resp.size(); i++) {
+                textMessage = textMessage + cardapioModel.get((int) resp.get(i)) + "\n";
+            }
+            option = JOptionPane.showInputDialog(null, textMessage, "Opções", -1); //cria a caixa de dialogo com os valores semelhantes encontrados
             resp = selecaoParam(option);
         }
-        itens[i] = (int)resp.get(0);
-        this.cardapioList.setSelectedIndices(itens);
-        this.buscarText.setText("");
+        this.cardapioList.setSelectedIndex((int) resp.get(0)); //seta o indice selecionado
+        this.buscarText.setText(""); //limpa o campo de busca
     }//GEN-LAST:event_buscarjButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewPedido().setVisible(true);
-            }
-        });
-    }
+    private void adicionarjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarjButtonActionPerformed
+        this.itensSelecionados.add(this.cardapio.get(this.cardapioList.getSelectedIndex()));
+        this.qtds.add(this.quantidadeSpinner.getValue());
+        this.quantidadeSpinner.setValue(1);
+        this.cardapioList.setSelectedIndex(-1);
+    }//GEN-LAST:event_adicionarjButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adicionarjButton;
     private javax.swing.JTextField buscarText;
     private javax.swing.JButton buscarjButton;
     private javax.swing.JButton canceljButton;
@@ -244,9 +295,11 @@ public class NewPedido extends javax.swing.JFrame {
     private javax.swing.JTextField codGarcomText;
     private javax.swing.JTextField codMesaText;
     private javax.swing.JLabel garcomjLabel;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jcardapioLabel1;
     private javax.swing.JLabel mesajLabel;
+    private javax.swing.JSpinner quantidadeSpinner;
     private javax.swing.JButton savejButton;
     // End of variables declaration//GEN-END:variables
 }

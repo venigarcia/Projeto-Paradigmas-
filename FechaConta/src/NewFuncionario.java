@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Random;
+import model.Garcom;
+import model.RestauranteModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +14,29 @@
  * @author carlos_vinicios
  */
 public class NewFuncionario extends javax.swing.JFrame {
-
+    private RestauranteModel restaurante;
+    private Boolean alterar = false;
+    private ArrayList <Garcom> garcons;
+    private int indexAlter;
     /**
      * Creates new form NewFuncionario
      */
-    public NewFuncionario() {
+    public NewFuncionario(RestauranteModel restaurante) {
         initComponents();
+        Random rand = new Random();
+        int cod = 1000 + rand.nextInt(1000);
+        this.codText.setText(String.valueOf(cod));
+        this.restaurante = restaurante;
+    }
+    
+    public NewFuncionario(RestauranteModel restaurante, int index){
+        initComponents();
+        this.restaurante = restaurante;
+        this.garcons = this.restaurante.getGarcons();
+        this.alterar = true;
+        this.codText.setText(String.valueOf(this.garcons.get(index).getCod()));
+        this.nomeText.setText(this.garcons.get(index).getNome());
+        this.indexAlter = index;
     }
 
     /**
@@ -31,12 +53,11 @@ public class NewFuncionario extends javax.swing.JFrame {
         codText = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         nomeText = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        senhaText = new javax.swing.JPasswordField();
         salvarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Funcionário");
         setPreferredSize(new java.awt.Dimension(470, 362));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -71,27 +92,18 @@ public class NewFuncionario extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 40, 20);
         getContentPane().add(nomeText, gridBagConstraints);
 
-        jLabel4.setText("Senha");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(0, 25, 40, 0);
-        getContentPane().add(jLabel4, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 40, 20);
-        getContentPane().add(senhaText, gridBagConstraints);
-
         salvarButton.setText("Salvar");
         salvarButton.setMaximumSize(new java.awt.Dimension(85, 40));
         salvarButton.setMinimumSize(new java.awt.Dimension(85, 40));
         salvarButton.setPreferredSize(new java.awt.Dimension(85, 40));
+        salvarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.1;
@@ -102,9 +114,14 @@ public class NewFuncionario extends javax.swing.JFrame {
         cancelarButton.setMaximumSize(new java.awt.Dimension(85, 40));
         cancelarButton.setMinimumSize(new java.awt.Dimension(85, 40));
         cancelarButton.setPreferredSize(new java.awt.Dimension(85, 40));
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.1;
@@ -115,49 +132,29 @@ public class NewFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButtonActionPerformed
+        String cod = this.codText.getText();
+        String nome = this.nomeText.getText();
+        if(!alterar){
+            this.restaurante.addGarcons(Integer.parseInt(cod), nome);
+        }else{
+            this.garcons.get(this.indexAlter).setNome(nome);
         }
-        //</editor-fold>
+        this.restaurante.gravarGarcons();
+        this.dispose();
+    }//GEN-LAST:event_salvarButtonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewFuncionario().setVisible(true);
-            }
-        });
-    }
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelarButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarButton;
     private javax.swing.JTextField codText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField nomeText;
     private javax.swing.JButton salvarButton;
-    private javax.swing.JPasswordField senhaText;
     // End of variables declaration//GEN-END:variables
 }
