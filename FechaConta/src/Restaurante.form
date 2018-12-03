@@ -53,14 +53,6 @@
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rio"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="controlePedido">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Controle de Pedidos"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="controlePedidoActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="gorjetasGarcom">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Total de gorjetas"/>

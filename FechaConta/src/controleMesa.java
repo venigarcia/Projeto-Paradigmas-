@@ -38,9 +38,9 @@ public class controleMesa extends javax.swing.JFrame {
     private void alterValues() {
         feedItensList();
         if (this.itens.size() > 0) {
-            this.totalLabel.setText("Total: R$" + String.valueOf(this.mesa.totalConta()));
-            this.totalPessoaLabel.setText("Total p/ pessoa: R$" + String.valueOf(this.mesa.totalContaPorCliente()));
-            this.gorjetaLabel.setText("Gorjeta: R$" + String.valueOf(this.mesa.calcGorjeta()));
+            this.totalLabel.setText("Total: R$" + String.format("%.2f", this.mesa.totalConta()));
+            this.totalPessoaLabel.setText("Total p/ pessoa: R$" + String.format("%.2f", this.mesa.totalContaPorCliente()));
+            this.gorjetaLabel.setText("Gorjeta: R$" + String.format("%.2f", this.mesa.calcGorjeta()));
         }
     }
 

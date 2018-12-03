@@ -27,7 +27,7 @@ public class TotalDia extends javax.swing.JFrame {
         this.restaurante = restaurante;
         this.atendimentos = this.restaurante.getAtendimento();
         feedListAtendimento();
-        this.totaljLabel.setText("Total: R$ " + String.valueOf(this.total));
+        this.totaljLabel.setText("Total: R$ " + String.format("%.2f", this.total));
     }
     
     private void feedListAtendimento(){

@@ -158,11 +158,12 @@ public class Restaurante extends javax.swing.JFrame {
     }
     
     public void setTotalCaixa(){
+        this.totalValor = 0;
         this.atendimentos = this.restaurante.getAtendimento();
         for(int i = 0; i < this.atendimentos.size(); i++){
             this.totalValor+=this.atendimentos.get(i).getTotal();
         }
-        this.totalCaixa.setText("R$ " + String.valueOf(totalValor));
+        this.totalCaixa.setText("R$ " + String.format("%.2f", totalValor));
     }
     
     private void mesaClicked(java.awt.event.MouseEvent evt, int index) {
@@ -230,7 +231,6 @@ public class Restaurante extends javax.swing.JFrame {
         cadCardapio = new javax.swing.JMenuItem();
         alterCardapio = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        controlePedido = new javax.swing.JMenuItem();
         gorjetasGarcom = new javax.swing.JMenuItem();
         totalDia = new javax.swing.JMenuItem();
 
@@ -457,14 +457,6 @@ public class Restaurante extends javax.swing.JFrame {
 
         jMenu2.setText("Relatório");
 
-        controlePedido.setText("Controle de Pedidos");
-        controlePedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                controlePedidoActionPerformed(evt);
-            }
-        });
-        jMenu2.add(controlePedido);
-
         gorjetasGarcom.setText("Total de gorjetas");
         gorjetasGarcom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -522,10 +514,6 @@ public class Restaurante extends javax.swing.JFrame {
     private void alterCardapioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterCardapioActionPerformed
         new NewAlteracao("item do cardápio", this.restaurante).setVisible(true);
     }//GEN-LAST:event_alterCardapioActionPerformed
-
-    private void controlePedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlePedidoActionPerformed
-        new NewControlePedidos(this.restaurante).setVisible(true);
-    }//GEN-LAST:event_controlePedidoActionPerformed
 
     private void gorjetasGarcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gorjetasGarcomActionPerformed
         new NewAlteracao("gorjeta", this.restaurante).setVisible(true);
@@ -612,7 +600,6 @@ public class Restaurante extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadCardapio;
     private javax.swing.JMenuItem cadFunc;
     private javax.swing.JButton close;
-    private javax.swing.JMenuItem controlePedido;
     private javax.swing.JLabel dataLabel;
     private javax.swing.JMenuItem gorjetasGarcom;
     private javax.swing.JLabel jLabel1;
