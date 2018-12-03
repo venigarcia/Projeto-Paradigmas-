@@ -135,6 +135,10 @@ public class Arquivo {
                 String nome = linha;
                 
                 Garcom garcom = new Garcom((int) cod, nome);
+                
+                linha = br.readLine();
+                garcom.setGorjetaTotal(Float.parseFloat(linha));
+                
                 garcons.add(garcom);
             }
             br.close();
