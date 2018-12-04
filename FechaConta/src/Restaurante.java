@@ -22,10 +22,10 @@ import java.util.Random;
  */
 public class Restaurante extends javax.swing.JFrame {
 
-    private RestauranteModel restaurante;
-    private Date data;
-    private Boolean stateMesas[];
-    private int indexsMesas[];
+    private final RestauranteModel restaurante;
+    private final Date data;
+    private final Boolean stateMesas[];
+    private final int indexsMesas[];
     private ArrayList<Garcom> garcons;
     private ArrayList<Mesa> mesas;
     private ArrayList<Atendimento> atendimentos;
@@ -36,6 +36,7 @@ public class Restaurante extends javax.swing.JFrame {
      */
     public Restaurante() {
         initComponents();
+        setLocationRelativeTo( null );
         this.restaurante = new RestauranteModel();
         this.restaurante.resgatarGarcons();
         this.restaurante.resgatarCardapio();
@@ -158,15 +159,6 @@ public class Restaurante extends javax.swing.JFrame {
         setTotalCaixa();
     }
     
-    public void setTotalCaixa(){
-        this.totalValor = 0;
-        this.atendimentos = this.restaurante.getAtendimento();
-        for(int i = 0; i < this.atendimentos.size(); i++){
-            this.totalValor+=this.atendimentos.get(i).getTotal();
-        }
-        this.totalCaixa.setText("R$ " + String.format("%.2f", totalValor));
-    }
-    
     private void mesaClicked(java.awt.event.MouseEvent evt, int index) {
         int respQtd;
         Garcom garcom;
@@ -200,6 +192,14 @@ public class Restaurante extends javax.swing.JFrame {
         changeMesaStatus(index, true);
     }
     
+    public void setTotalCaixa(){
+        this.totalValor = 0;
+        this.atendimentos = this.restaurante.getAtendimento();
+        for(int i = 0; i < this.atendimentos.size(); i++){
+            this.totalValor+=this.atendimentos.get(i).getTotal();
+        }
+        this.totalCaixa.setText("R$ " + String.format("%.2f", totalValor));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

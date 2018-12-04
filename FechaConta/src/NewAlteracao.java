@@ -27,6 +27,7 @@ public class NewAlteracao extends javax.swing.JFrame {
      */
     public NewAlteracao(String tipo, RestauranteModel restaurante) {
         initComponents();
+        setLocationRelativeTo( null );
         this.restaurante = restaurante;
         this.titlejLabel.setText("Selecione o " + tipo);
         if("funcionário".equals(tipo)){

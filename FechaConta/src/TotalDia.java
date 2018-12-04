@@ -24,6 +24,7 @@ public class TotalDia extends javax.swing.JFrame {
      */
     public TotalDia(RestauranteModel restaurante) {
         initComponents();
+        setLocationRelativeTo( null );
         this.restaurante = restaurante;
         this.atendimentos = this.restaurante.getAtendimento();
         feedListAtendimento();

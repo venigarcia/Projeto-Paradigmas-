@@ -23,6 +23,7 @@ public class NewFuncionario extends javax.swing.JFrame {
      */
     public NewFuncionario(RestauranteModel restaurante) {
         initComponents();
+        setLocationRelativeTo( null );
         Random rand = new Random();
         int cod = 1000 + rand.nextInt(1000);
         this.codText.setText(String.valueOf(cod));
@@ -58,7 +59,7 @@ public class NewFuncionario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Funcionário");
-        setPreferredSize(new java.awt.Dimension(470, 362));
+        setPreferredSize(new java.awt.Dimension(398, 234));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 

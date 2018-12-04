@@ -28,6 +28,7 @@ public class controleMesa extends javax.swing.JFrame {
      */
     public controleMesa(RestauranteModel restaurante, Restaurante r, Mesa mesa, int index) {
         initComponents();
+        setLocationRelativeTo( null );
         this.mesa = mesa;
         this.restaurante = restaurante;
         this.index = index;
@@ -78,10 +79,11 @@ public class controleMesa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Controle de Mesa");
+        setResizable(false);
 
         jLabel1.setText("Controle de Mesa");
 
-        jLabel2.setText("Itens:");
+        jLabel2.setText("Itens pedidos:");
 
         jScrollPane1.setViewportView(itensjList);
 
@@ -122,14 +124,9 @@ public class controleMesa extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(179, 179, 179)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)))
-                        .addGap(0, 167, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addGap(0, 361, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,6 +144,10 @@ public class controleMesa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(removerItemjButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(176, 176, 176))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,8 +159,8 @@ public class controleMesa extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(removerItemjButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(removerItemjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(totalLabel)
                 .addGap(18, 18, 18)
                 .addComponent(totalPessoaLabel)
@@ -179,6 +180,7 @@ public class controleMesa extends javax.swing.JFrame {
         String resp = JOptionPane.showInputDialog(null, "Quanto gostou do atendimento:\n1-Péssimo\n2-Ruim\n3-Médio\n4-Bom\n5-Muito Bom", "Avaliação", -1);
         if (resp != null && !"".equals(resp)) {
             this.mesa.fecharConta(this.restaurante, Integer.parseInt(resp));
+            this.restaurante.gerarCupon(this.mesa);
             this.restaurante.gravarAtendimentos();
             this.restaurante.gravarGarcons();
             this.mainGui.liberarMesa(this.index);

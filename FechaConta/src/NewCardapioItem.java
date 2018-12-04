@@ -23,6 +23,7 @@ public class NewCardapioItem extends javax.swing.JFrame {
      */
     public NewCardapioItem(RestauranteModel restaurante) {
         initComponents();
+        setLocationRelativeTo( null );
         Random rand = new Random();
         int cod = 1000 + rand.nextInt(1000);
         this.codText.setText(String.valueOf(cod));
@@ -60,6 +61,7 @@ public class NewCardapioItem extends javax.swing.JFrame {
         cancelarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Novo item");
         setMaximumSize(new java.awt.Dimension(470, 382));
         setMinimumSize(new java.awt.Dimension(470, 382));
         setPreferredSize(new java.awt.Dimension(470, 362));

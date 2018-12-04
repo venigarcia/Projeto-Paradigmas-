@@ -21,6 +21,7 @@ public class NewControlePedidos extends javax.swing.JFrame {
      */
     public NewControlePedidos(RestauranteModel restaurante) {
         initComponents();
+        setLocationRelativeTo( null );
         this.restaurante = restaurante;
         feedPedidoList();
     }

@@ -15,6 +15,7 @@ public class totalDiaGarcom extends javax.swing.JFrame {
      */
     public totalDiaGarcom(double total) {
         initComponents();
+        setLocationRelativeTo( null );
         this.totalLabel.setText("Total do dia: R$" + String.format("%.2f", total));
     }
 

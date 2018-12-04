@@ -158,7 +158,7 @@ public class RestauranteModel {
     
     public void gerarCupon(Mesa mesa){
         Date d = new Date(System.currentTimeMillis());
-        String data = new SimpleDateFormat("dd/MM/yyyy").format(d);
+        String data = new SimpleDateFormat("dd_MM_yyyy").format(d);
         Arquivo arquivo = new Arquivo("cuponsFiscais/CuponsDia(" + data + ").txt" );
         arquivo.gerarCupon(mesa, arquivo);
     }

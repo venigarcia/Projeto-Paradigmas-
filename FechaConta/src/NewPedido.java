@@ -30,6 +30,7 @@ public class NewPedido extends javax.swing.JFrame {
      */
     public NewPedido(RestauranteModel restaurante, Restaurante r) {
         initComponents();
+        setLocationRelativeTo( null );
         this.restaurante = restaurante;
         this.cardapio = this.restaurante.getCardapio();
         this.garcons = this.restaurante.getGarcons();
@@ -41,6 +42,7 @@ public class NewPedido extends javax.swing.JFrame {
 
     public NewPedido(RestauranteModel restaurante, int codMesa, int codGarcom) {
         initComponents();
+        setLocationRelativeTo( null );
         this.restaurante = restaurante;
         this.codGarcomText.setText(String.valueOf(codGarcom));
         this.codMesaText.setText(String.valueOf(codMesa));
@@ -72,7 +74,25 @@ public class NewPedido extends javax.swing.JFrame {
         }
         return busca;
     }
-
+    
+    public void alterItens(int index){
+        int value = (int) this.qtds.get(index);
+        if(value != 0)
+            this.qtds.set(index, value-1);
+        else{
+            this.qtds.remove(index);
+            this.itensSelecionados.remove(index);
+        }
+    }
+    
+    public ArrayList<Cardapio> getSelecionados(){
+        return this.itensSelecionados;
+    }
+    
+    public ArrayList getQtds(){
+        return this.qtds;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,6 +116,7 @@ public class NewPedido extends javax.swing.JFrame {
         adicionarjButton = new javax.swing.JButton();
         quantidadeSpinner = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
+        visualizarjButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Pedido");
@@ -155,6 +176,13 @@ public class NewPedido extends javax.swing.JFrame {
 
         jLabel3.setText("Quantidade");
 
+        visualizarjButton.setText("Visualizar");
+        visualizarjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizarjButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,12 +213,15 @@ public class NewPedido extends javax.swing.JFrame {
                         .addComponent(quantidadeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(adicionarjButton)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(savejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(canceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 120, Short.MAX_VALUE)))
+                                .addComponent(canceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 120, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(adicionarjButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(visualizarjButton)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -216,7 +247,8 @@ public class NewPedido extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adicionarjButton)
                     .addComponent(quantidadeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(visualizarjButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(savejButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,6 +342,10 @@ public class NewPedido extends javax.swing.JFrame {
         this.cardapioList.setSelectedIndex(-1);
     }//GEN-LAST:event_adicionarjButtonActionPerformed
 
+    private void visualizarjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarjButtonActionPerformed
+           new itensPedidos(this).setVisible(true);
+    }//GEN-LAST:event_visualizarjButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarjButton;
     private javax.swing.JTextField buscarText;
@@ -325,5 +361,6 @@ public class NewPedido extends javax.swing.JFrame {
     private javax.swing.JLabel mesajLabel;
     private javax.swing.JSpinner quantidadeSpinner;
     private javax.swing.JButton savejButton;
+    private javax.swing.JButton visualizarjButton;
     // End of variables declaration//GEN-END:variables
 }
