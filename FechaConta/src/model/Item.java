@@ -20,7 +20,8 @@ public class Item {
         this.cod = cod;
         this.qtd = qtd;
         this.preco = preco;
-        precoTotal = this.preco * this.qtd;
+        this.precoTotal = this.preco * this.qtd;
+        this.nome = nome;
     }
 
     public String getNome() {

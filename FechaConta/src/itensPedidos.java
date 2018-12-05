@@ -12,7 +12,7 @@ import model.Cardapio;
  *
  * @author carlos_vinicios
  */
-public class itensPedidos extends javax.swing.JFrame {
+public class itensPedidos extends javax.swing.JDialog {
     private DefaultListModel itensModel;
     private NewPedido fatherGUI;
     private ArrayList<Cardapio> itensSelecionados;
@@ -23,6 +23,7 @@ public class itensPedidos extends javax.swing.JFrame {
      */
     public itensPedidos(NewPedido father) {
         initComponents();
+        this.setModal(true);
         setLocationRelativeTo( null );
         this.fatherGUI = father;
         feedListItens();

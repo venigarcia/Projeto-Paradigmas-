@@ -2,6 +2,7 @@
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import model.Atendimento;
 import model.RestauranteModel;
 import model.Cardapio;
 import model.Mesa;
@@ -16,7 +17,7 @@ import model.Garcom;
  *
  * @author carlos_vinicios
  */
-public class NewPedido extends javax.swing.JFrame {
+public class NewPedido extends javax.swing.JDialog {
     private DefaultListModel cardapioModel;
     private RestauranteModel restaurante;
     private ArrayList<Cardapio> cardapio;
@@ -31,6 +32,7 @@ public class NewPedido extends javax.swing.JFrame {
     public NewPedido(RestauranteModel restaurante, Restaurante r) {
         initComponents();
         setLocationRelativeTo( null );
+        this.setModal(true);
         this.restaurante = restaurante;
         this.cardapio = this.restaurante.getCardapio();
         this.garcons = this.restaurante.getGarcons();
@@ -76,9 +78,9 @@ public class NewPedido extends javax.swing.JFrame {
     }
     
     public void alterItens(int index){
-        int value = (int) this.qtds.get(index);
+        int value = (int) this.qtds.get(index)-1;
         if(value != 0)
-            this.qtds.set(index, value-1);
+            this.qtds.set(index, value);
         else{
             this.qtds.remove(index);
             this.itensSelecionados.remove(index);
@@ -120,6 +122,7 @@ public class NewPedido extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Pedido");
+        setAutoRequestFocus(false);
         setLocation(new java.awt.Point(400, 100));
         setResizable(false);
 
@@ -264,6 +267,7 @@ public class NewPedido extends javax.swing.JFrame {
         String label = "Deseja adicionar os seguintes intens?\n";
         Mesa mesa = null;
         Garcom garcom = null;
+        Atendimento atendimento = null;
         ArrayList<Mesa> mesas = this.restaurante.getMesas();
         if (this.itensSelecionados.size() > 0) {
             for (i = 0; i < this.itensSelecionados.size(); i++) {
@@ -299,7 +303,8 @@ public class NewPedido extends javax.swing.JFrame {
                         }
                         String resp = JOptionPane.showInputDialog(null, "Quanto gostou do atendimento:\n1-Péssimo\n2-Ruim\n3-Médio\n4-Bom\n5-Muito Bom", "Avaliação", -1);
                         if (resp != null && !"".equals(resp)) {
-                            mesa.fecharConta(this.restaurante, Integer.parseInt(resp));
+                            atendimento = mesa.fecharConta(this.restaurante, Integer.parseInt(resp));
+                            this.restaurante.gerarCupon(atendimento);
                             this.restaurante.gravarAtendimentos();
                             this.restaurante.gravarGarcons();
                             this.mainGui.setTotalCaixa();

@@ -35,24 +35,32 @@ public class Arquivo {
             ex.printStackTrace();
         }
     }
-    public void gerarCupon(Mesa mesa, Arquivo arquivo){ //mesa, cuponsFiscais/c
+    
+    public void gerarCupon(Atendimento atendimento, Arquivo arquivo){ //mesa, cuponsFiscais/c
         try {
             if (!this.arquivo.exists()) {
                 this.arquivo.createNewFile();
             }
             FileWriter fw = new FileWriter(this.arquivo, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("Codigo da mesa: " + mesa.getCod());
-            bw.write("Garcon: " + mesa.getGarcom().getNome());
-            bw.write("Numero de clientes: " + mesa.getQtdCliente());
-            for(int i=0;i < mesa.getPedidos().size(); i++){
-                bw.write("Pedido numero " + i+1);
-                bw.write("Codigo: " + mesa.getPedidos().get(i).getCod());
-                bw.write("Nome: " + mesa.getPedidos().get(i).getNome());
-                bw.write("Preco: R$" + mesa.getPedidos().get(i).getPreco());
-                bw.write("Quantidade: " + mesa.getPedidos().get(i).getQtd());
-                bw.write("Total: R$" + mesa.getPedidos().get(i).getPrecoTotal());
+            bw.write("                    Restaurante Goût Suché             \n");
+            bw.write("                Rua criada, 101 - Bairro chique        \n");
+            bw.write("                  São Luís - MA CEP 65000-00           \n");
+            bw.write("CNPJ: 83.998.340/0001-80                               \n");
+            bw.write("IE: 000.000.000.000                                    \n");
+            bw.write("IM: 0.000.000-0                                        \n");
+            bw.write("______________________________________________________________\n");
+            bw.write(atendimento.getData() + "   CCF: 000000                              COO:1234\n\n");
+            bw.write("                         CUPOM FISCAL                  \n\n");
+            bw.write("ITEM   COD    DESC             QTD     VL.UNIT(R$)   TOTAL(R$)\n");
+            for(int i=0;i < atendimento.getPedido().size(); i++){
+                bw.write(i + "      " + atendimento.getPedido().get(i).getCod() + "   " + atendimento.getPedido().get(i).getNome() + " ");
+                bw.write(atendimento.getPedido().get(i).getQtd() + "   X    " + String.format("%.2f",atendimento.getPedido().get(i).getPreco()) + "         " + String.format("%.2f", atendimento.getPedido().get(i).getPrecoTotal()) + "\n");
             }
+            bw.write("______________________________________________________________\n");
+            bw.write("Gorjeta                                                R$" + String.format("%.2f",atendimento.getGorjeta())+"\n");
+            bw.write("______________________________________________________________\n");
+            bw.write("Total                                                 R$"+ String.format("%.2f",atendimento.getTotal()) +"\n");
             bw.newLine();
             bw.close();
             fw.close();

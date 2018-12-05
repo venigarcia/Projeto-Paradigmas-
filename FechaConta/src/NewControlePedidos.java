@@ -12,7 +12,7 @@ import model.RestauranteModel;
  *
  * @author carlos_vinicios
  */
-public class NewControlePedidos extends javax.swing.JFrame {
+public class NewControlePedidos extends javax.swing.JDialog {
     private DefaultListModel pedidosModel;
     private RestauranteModel restaurante;
     
@@ -21,6 +21,7 @@ public class NewControlePedidos extends javax.swing.JFrame {
      */
     public NewControlePedidos(RestauranteModel restaurante) {
         initComponents();
+        this.setModal(true);
         setLocationRelativeTo( null );
         this.restaurante = restaurante;
         feedPedidoList();

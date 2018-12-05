@@ -14,7 +14,7 @@ import model.Atendimento;
  *
  * @author carlos_vinicios
  */
-public class TotalDia extends javax.swing.JFrame {
+public class TotalDia extends javax.swing.JDialog {
     private DefaultListModel atendimentosModel;
     private RestauranteModel restaurante;
     private ArrayList<Atendimento> atendimentos;
@@ -24,6 +24,7 @@ public class TotalDia extends javax.swing.JFrame {
      */
     public TotalDia(RestauranteModel restaurante) {
         initComponents();
+        this.setModal(true);
         setLocationRelativeTo( null );
         this.restaurante = restaurante;
         this.atendimentos = this.restaurante.getAtendimento();

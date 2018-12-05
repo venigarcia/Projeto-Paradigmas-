@@ -15,7 +15,7 @@ import model.Cardapio;
  *
  * @author carlos_vinicios
  */
-public class NewAlteracao extends javax.swing.JFrame {
+public class NewAlteracao extends javax.swing.JDialog {
     private DefaultListModel listModel;
     private ArrayList <Garcom> garcons;
     private ArrayList <Cardapio> cardapio;
@@ -27,6 +27,7 @@ public class NewAlteracao extends javax.swing.JFrame {
      */
     public NewAlteracao(String tipo, RestauranteModel restaurante) {
         initComponents();
+        this.setModal(true);
         setLocationRelativeTo( null );
         this.restaurante = restaurante;
         this.titlejLabel.setText("Selecione o " + tipo);
@@ -197,7 +198,6 @@ public class NewAlteracao extends javax.swing.JFrame {
                 }
             }
         }
-        this.dispose();
     }//GEN-LAST:event_editarjButtonActionPerformed
 
     private void cancelarjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarjButtonActionPerformed

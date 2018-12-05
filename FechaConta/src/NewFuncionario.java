@@ -13,7 +13,7 @@ import model.RestauranteModel;
  *
  * @author carlos_vinicios
  */
-public class NewFuncionario extends javax.swing.JFrame {
+public class NewFuncionario extends javax.swing.JDialog {
     private RestauranteModel restaurante;
     private Boolean alterar = false;
     private ArrayList <Garcom> garcons;
@@ -23,6 +23,7 @@ public class NewFuncionario extends javax.swing.JFrame {
      */
     public NewFuncionario(RestauranteModel restaurante) {
         initComponents();
+        this.setModal(true);
         setLocationRelativeTo( null );
         Random rand = new Random();
         int cod = 1000 + rand.nextInt(1000);
@@ -32,6 +33,8 @@ public class NewFuncionario extends javax.swing.JFrame {
     
     public NewFuncionario(RestauranteModel restaurante, int index){
         initComponents();
+        this.setModal(true);
+        setLocationRelativeTo( null );
         this.restaurante = restaurante;
         this.garcons = this.restaurante.getGarcons();
         this.alterar = true;

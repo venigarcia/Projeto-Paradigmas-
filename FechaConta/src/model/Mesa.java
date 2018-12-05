@@ -92,13 +92,14 @@ public class Mesa {
         cria um objeto Atendimento "a" com seus respectivos parâmetros e chama a função addAtendimento(Atendimento a)
         de Restaurantte r.
     */
-    public void fecharConta(RestauranteModel r, int aval){
+    public Atendimento fecharConta(RestauranteModel r, int aval){
         getGarcom().totalizaDia(calcGorjeta());
         setStatusConta(false);
         Date d = new Date(System.currentTimeMillis());
         String data = new SimpleDateFormat("dd/MM/yyyy").format(d);
         Atendimento a = new Atendimento(getCod(), getGarcom().getCod(), getPedidos(), data, totalConta(), calcGorjeta(), aval);
         r.addAtendimento(a);
+        return a;
     }
     
     public void imprimir(){}

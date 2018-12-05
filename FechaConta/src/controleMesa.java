@@ -5,6 +5,7 @@ import model.RestauranteModel;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import model.Atendimento;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author carlos_vinicios
  */
-public class controleMesa extends javax.swing.JFrame {
+public class controleMesa extends javax.swing.JDialog {
 
     private DefaultListModel itensModel;
     private ArrayList<Item> itens;
@@ -28,6 +29,7 @@ public class controleMesa extends javax.swing.JFrame {
      */
     public controleMesa(RestauranteModel restaurante, Restaurante r, Mesa mesa, int index) {
         initComponents();
+        this.setModal(true);
         setLocationRelativeTo( null );
         this.mesa = mesa;
         this.restaurante = restaurante;
@@ -178,9 +180,10 @@ public class controleMesa extends javax.swing.JFrame {
 
     private void fecharContajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharContajButtonActionPerformed
         String resp = JOptionPane.showInputDialog(null, "Quanto gostou do atendimento:\n1-Péssimo\n2-Ruim\n3-Médio\n4-Bom\n5-Muito Bom", "Avaliação", -1);
+        Atendimento atendimento;
         if (resp != null && !"".equals(resp)) {
-            this.mesa.fecharConta(this.restaurante, Integer.parseInt(resp));
-            this.restaurante.gerarCupon(this.mesa);
+            atendimento = this.mesa.fecharConta(this.restaurante, Integer.parseInt(resp));
+            this.restaurante.gerarCupon(atendimento);
             this.restaurante.gravarAtendimentos();
             this.restaurante.gravarGarcons();
             this.mainGui.liberarMesa(this.index);

@@ -156,10 +156,10 @@ public class RestauranteModel {
         garcons = arquivo.lerGarcons();
     }
     
-    public void gerarCupon(Mesa mesa){
+    public void gerarCupon(Atendimento atendimento){
         Date d = new Date(System.currentTimeMillis());
         String data = new SimpleDateFormat("dd_MM_yyyy").format(d);
-        Arquivo arquivo = new Arquivo("cuponsFiscais/CuponsDia(" + data + ").txt" );
-        arquivo.gerarCupon(mesa, arquivo);
+        Arquivo arquivo = new Arquivo("cuponsFiscais/atendimento_" + atendimento.getCod_mesa() + "_" + data + ".txt" );
+        arquivo.gerarCupon(atendimento, arquivo);
     }
 }

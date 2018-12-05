@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author carlos_vinicios
  */
-public class NewCardapioItem extends javax.swing.JFrame {
+public class NewCardapioItem extends javax.swing.JDialog {
     private RestauranteModel restaurante;
     private Boolean alterar = false;
     private ArrayList<Cardapio> cardapio;
@@ -23,6 +23,7 @@ public class NewCardapioItem extends javax.swing.JFrame {
      */
     public NewCardapioItem(RestauranteModel restaurante) {
         initComponents();
+        this.setModal(true);
         setLocationRelativeTo( null );
         Random rand = new Random();
         int cod = 1000 + rand.nextInt(1000);
@@ -32,6 +33,8 @@ public class NewCardapioItem extends javax.swing.JFrame {
     
     public NewCardapioItem(RestauranteModel restaurante, int index){
         initComponents();
+        this.setModal(true);
+        setLocationRelativeTo( null );
         this.restaurante = restaurante;
         this.cardapio = this.restaurante.getCardapio();
         this.alterar = true;

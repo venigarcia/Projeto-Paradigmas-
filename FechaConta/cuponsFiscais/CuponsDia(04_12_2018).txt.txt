@@ -1,1 +1,0 @@
-Codigo da mesa: 295Garcon: Carlos ViniciosNumero de clientes: 4Pedido numero 01Codigo: 1809Nome: nullPreco: R$22.0Quantidade: 1Total: R$22.0Pedido numero 11Codigo: 1592Nome: nullPreco: R$60.0Quantidade: 1Total: R$60.0
