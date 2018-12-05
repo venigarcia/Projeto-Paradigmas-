@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,6 +38,7 @@ public class Restaurante extends javax.swing.JFrame {
     public Restaurante() {
         initComponents();
         setLocationRelativeTo( null );
+        
         this.restaurante = new RestauranteModel();
         this.restaurante.resgatarGarcons();
         this.restaurante.resgatarCardapio();
@@ -241,7 +243,6 @@ public class Restaurante extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Restaurante");
         setLocation(new java.awt.Point(0, 0));
-        setPreferredSize(new java.awt.Dimension(1150, 850));
         setSize(new java.awt.Dimension(1150, 850));
 
         toolBarjPanel.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -488,7 +489,7 @@ public class Restaurante extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(toolBarjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mesasjPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE))
+                .addComponent(mesasjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 901, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
