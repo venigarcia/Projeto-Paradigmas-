@@ -1,3 +1,4 @@
+import java.awt.Color;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -22,7 +23,8 @@ public class NewControlePedidos extends javax.swing.JDialog {
     public NewControlePedidos(RestauranteModel restaurante) {
         initComponents();
         this.setModal(true);
-        setLocationRelativeTo( null );
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
         this.restaurante = restaurante;
         feedPedidoList();
     }
@@ -68,8 +70,15 @@ public class NewControlePedidos extends javax.swing.JDialog {
         setTitle("Controle de pedidos");
         setResizable(false);
 
+        titlejLabel.setFont(new java.awt.Font("Segoe UI Symbol", 0, 24)); // NOI18N
         titlejLabel.setText("Selecione o pedido");
 
+        buscarText.setBackground(new java.awt.Color(234, 221, 212));
+        buscarText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
+
+        buscarjButton.setBackground(new java.awt.Color(33, 12, 18));
+        buscarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        buscarjButton.setForeground(new java.awt.Color(255, 255, 255));
         buscarjButton.setText("Buscar");
         buscarjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,10 +86,16 @@ public class NewControlePedidos extends javax.swing.JDialog {
             }
         });
 
+        pedidosjList.setBackground(new java.awt.Color(234, 221, 212));
+        pedidosjList.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         pedidosjList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        pedidosjList.setSelectionBackground(new java.awt.Color(33, 12, 18));
         pedidosjList.setVisibleRowCount(15);
         jScrollPane1.setViewportView(pedidosjList);
 
+        selecionarjButton.setBackground(new java.awt.Color(33, 12, 18));
+        selecionarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        selecionarjButton.setForeground(new java.awt.Color(255, 255, 255));
         selecionarjButton.setText("Selecionar");
         selecionarjButton.setMaximumSize(new java.awt.Dimension(110, 29));
         selecionarjButton.setMinimumSize(new java.awt.Dimension(110, 40));
@@ -91,6 +106,9 @@ public class NewControlePedidos extends javax.swing.JDialog {
             }
         });
 
+        cancelarjButton.setBackground(new java.awt.Color(33, 12, 18));
+        cancelarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        cancelarjButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelarjButton.setText("Cancelar");
         cancelarjButton.setMaximumSize(new java.awt.Dimension(85, 40));
         cancelarjButton.setMinimumSize(new java.awt.Dimension(85, 40));
@@ -119,11 +137,11 @@ public class NewControlePedidos extends javax.swing.JDialog {
                         .addGap(105, 105, 105)
                         .addComponent(selecionarjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cancelarjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 99, Short.MAX_VALUE)))
+                        .addComponent(cancelarjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 76, Short.MAX_VALUE)
                 .addComponent(titlejLabel)
                 .addGap(145, 145, 145))
         );
@@ -137,7 +155,7 @@ public class NewControlePedidos extends javax.swing.JDialog {
                     .addComponent(buscarjButton)
                     .addComponent(buscarText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selecionarjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

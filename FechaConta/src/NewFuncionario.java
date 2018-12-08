@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 import model.Garcom;
@@ -24,7 +25,8 @@ public class NewFuncionario extends javax.swing.JDialog {
     public NewFuncionario(RestauranteModel restaurante) {
         initComponents();
         this.setModal(true);
-        setLocationRelativeTo( null );
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
         Random rand = new Random();
         int cod = 1000 + rand.nextInt(1000);
         this.codText.setText(String.valueOf(cod));
@@ -34,7 +36,8 @@ public class NewFuncionario extends javax.swing.JDialog {
     public NewFuncionario(RestauranteModel restaurante, int index){
         initComponents();
         this.setModal(true);
-        setLocationRelativeTo( null );
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
         this.restaurante = restaurante;
         this.garcons = this.restaurante.getGarcons();
         this.alterar = true;
@@ -62,15 +65,18 @@ public class NewFuncionario extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Funcionário");
-        setPreferredSize(new java.awt.Dimension(398, 234));
+        setPreferredSize(new java.awt.Dimension(400, 264));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         jLabel1.setText("Cod.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(40, 25, 40, 0);
         getContentPane().add(jLabel1, gridBagConstraints);
 
+        codText.setBackground(new java.awt.Color(234, 221, 212));
+        codText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         codText.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -82,12 +88,16 @@ public class NewFuncionario extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(40, 30, 40, 20);
         getContentPane().add(codText, gridBagConstraints);
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         jLabel3.setText("Nome");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 40, 0);
         getContentPane().add(jLabel3, gridBagConstraints);
+
+        nomeText.setBackground(new java.awt.Color(234, 221, 212));
+        nomeText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -96,6 +106,9 @@ public class NewFuncionario extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 40, 20);
         getContentPane().add(nomeText, gridBagConstraints);
 
+        salvarButton.setBackground(new java.awt.Color(33, 12, 18));
+        salvarButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        salvarButton.setForeground(new java.awt.Color(255, 255, 255));
         salvarButton.setText("Salvar");
         salvarButton.setMaximumSize(new java.awt.Dimension(85, 40));
         salvarButton.setMinimumSize(new java.awt.Dimension(85, 40));
@@ -114,10 +127,13 @@ public class NewFuncionario extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 15, 0);
         getContentPane().add(salvarButton, gridBagConstraints);
 
+        cancelarButton.setBackground(new java.awt.Color(33, 12, 18));
+        cancelarButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelarButton.setText("Cancelar");
         cancelarButton.setMaximumSize(new java.awt.Dimension(85, 40));
         cancelarButton.setMinimumSize(new java.awt.Dimension(85, 40));
-        cancelarButton.setPreferredSize(new java.awt.Dimension(85, 40));
+        cancelarButton.setPreferredSize(new java.awt.Dimension(93, 40));
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarButtonActionPerformed(evt);

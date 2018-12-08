@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import model.Cardapio;
@@ -24,7 +25,8 @@ public class itensPedidos extends javax.swing.JDialog {
     public itensPedidos(NewPedido father) {
         initComponents();
         this.setModal(true);
-        setLocationRelativeTo( null );
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
         this.fatherGUI = father;
         feedListItens();
     }
@@ -61,12 +63,19 @@ public class itensPedidos extends javax.swing.JDialog {
         setLocation(new java.awt.Point(0, 0));
         setType(java.awt.Window.Type.POPUP);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Itens selecionados");
 
+        itensjList.setBackground(new java.awt.Color(234, 221, 212));
+        itensjList.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         itensjList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        itensjList.setSelectionBackground(new java.awt.Color(33, 12, 18));
         jScrollPane1.setViewportView(itensjList);
 
+        removerjButton.setBackground(new java.awt.Color(33, 12, 18));
+        removerjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        removerjButton.setForeground(new java.awt.Color(255, 255, 255));
         removerjButton.setText("Remover");
         removerjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +83,9 @@ public class itensPedidos extends javax.swing.JDialog {
             }
         });
 
+        fecharjButton.setBackground(new java.awt.Color(33, 12, 18));
+        fecharjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        fecharjButton.setForeground(new java.awt.Color(255, 255, 255));
         fecharjButton.setText("Fechar");
         fecharjButton.setMaximumSize(new java.awt.Dimension(85, 40));
         fecharjButton.setMinimumSize(new java.awt.Dimension(85, 40));
@@ -111,7 +123,7 @@ public class itensPedidos extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(removerjButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(fecharjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

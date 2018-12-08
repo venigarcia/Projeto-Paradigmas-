@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -31,7 +32,8 @@ public class NewPedido extends javax.swing.JDialog {
      */
     public NewPedido(RestauranteModel restaurante, Restaurante r) {
         initComponents();
-        setLocationRelativeTo( null );
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
         this.setModal(true);
         this.restaurante = restaurante;
         this.cardapio = this.restaurante.getCardapio();
@@ -116,9 +118,9 @@ public class NewPedido extends javax.swing.JDialog {
         buscarjButton = new javax.swing.JButton();
         buscarText = new javax.swing.JTextField();
         adicionarjButton = new javax.swing.JButton();
-        quantidadeSpinner = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         visualizarjButton = new javax.swing.JButton();
+        quantidadeText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Pedido");
@@ -126,15 +128,25 @@ public class NewPedido extends javax.swing.JDialog {
         setLocation(new java.awt.Point(400, 100));
         setResizable(false);
 
+        garcomjLabel.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         garcomjLabel.setText("Código Garçom");
         garcomjLabel.setToolTipText("");
 
+        codGarcomText.setBackground(new java.awt.Color(234, 221, 212));
+        codGarcomText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         codGarcomText.setToolTipText("");
 
+        mesajLabel.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         mesajLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         mesajLabel.setText("Código Mesa");
         mesajLabel.setToolTipText("");
 
+        codMesaText.setBackground(new java.awt.Color(234, 221, 212));
+        codMesaText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
+
+        savejButton.setBackground(new java.awt.Color(33, 12, 18));
+        savejButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        savejButton.setForeground(new java.awt.Color(255, 255, 255));
         savejButton.setText("Salvar");
         savejButton.setMaximumSize(new java.awt.Dimension(85, 40));
         savejButton.setMinimumSize(new java.awt.Dimension(85, 40));
@@ -145,6 +157,9 @@ public class NewPedido extends javax.swing.JDialog {
             }
         });
 
+        canceljButton.setBackground(new java.awt.Color(33, 12, 18));
+        canceljButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        canceljButton.setForeground(new java.awt.Color(255, 255, 255));
         canceljButton.setText("Cancelar");
         canceljButton.setMaximumSize(new java.awt.Dimension(85, 40));
         canceljButton.setMinimumSize(new java.awt.Dimension(85, 40));
@@ -155,12 +170,19 @@ public class NewPedido extends javax.swing.JDialog {
             }
         });
 
+        cardapioList.setBackground(new java.awt.Color(234, 221, 212));
+        cardapioList.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         cardapioList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        cardapioList.setSelectionBackground(new java.awt.Color(33, 12, 18));
         jScrollPane1.setViewportView(cardapioList);
 
-        jcardapioLabel1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        jcardapioLabel1.setFont(new java.awt.Font("Segoe UI Symbol", 1, 24)); // NOI18N
+        jcardapioLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jcardapioLabel1.setText("Cardápio");
 
+        buscarjButton.setBackground(new java.awt.Color(33, 12, 18));
+        buscarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        buscarjButton.setForeground(new java.awt.Color(255, 255, 255));
         buscarjButton.setText("Buscar");
         buscarjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +190,12 @@ public class NewPedido extends javax.swing.JDialog {
             }
         });
 
+        buscarText.setBackground(new java.awt.Color(234, 221, 212));
+        buscarText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
+
+        adicionarjButton.setBackground(new java.awt.Color(33, 12, 18));
+        adicionarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        adicionarjButton.setForeground(new java.awt.Color(255, 255, 255));
         adicionarjButton.setText("Adicionar");
         adicionarjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,10 +203,12 @@ public class NewPedido extends javax.swing.JDialog {
             }
         });
 
-        quantidadeSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
-
+        jLabel3.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         jLabel3.setText("Quantidade");
 
+        visualizarjButton.setBackground(new java.awt.Color(33, 12, 18));
+        visualizarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        visualizarjButton.setForeground(new java.awt.Color(255, 255, 255));
         visualizarjButton.setText("Visualizar");
         visualizarjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,17 +216,17 @@ public class NewPedido extends javax.swing.JDialog {
             }
         });
 
+        quantidadeText.setBackground(new java.awt.Color(234, 221, 212));
+        quantidadeText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jcardapioLabel1)
-                .addGap(192, 192, 192))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jcardapioLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,26 +236,26 @@ public class NewPedido extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(codMesaText)
                             .addComponent(codGarcomText)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buscarText)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buscarText, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarjButton))
+                        .addComponent(buscarjButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(6, 6, 6)
-                        .addComponent(quantidadeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(quantidadeText, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(savejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(canceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 120, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(adicionarjButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(visualizarjButton)))))
+                        .addComponent(adicionarjButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(visualizarjButton)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(savejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(canceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,18 +271,20 @@ public class NewPedido extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jcardapioLabel1)
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscarText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarjButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buscarjButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buscarText, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adicionarjButton)
-                    .addComponent(quantidadeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(visualizarjButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                    .addComponent(visualizarjButton)
+                    .addComponent(quantidadeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(savejButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(canceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -341,9 +373,15 @@ public class NewPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_buscarjButtonActionPerformed
 
     private void adicionarjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarjButtonActionPerformed
-        this.itensSelecionados.add(this.cardapio.get(this.cardapioList.getSelectedIndex()));
-        this.qtds.add(this.quantidadeSpinner.getValue());
-        this.quantidadeSpinner.setValue(1);
+        String qtd_str = this.quantidadeText.getText();
+        if(qtd_str != "" && qtd_str != null){
+            int qtd = Integer.parseInt(qtd_str);
+            if(qtd > 0){
+                this.itensSelecionados.add(this.cardapio.get(this.cardapioList.getSelectedIndex()));
+                this.qtds.add(qtd);
+            }
+        }
+        this.quantidadeText.setText("");
         this.cardapioList.setSelectedIndex(-1);
     }//GEN-LAST:event_adicionarjButtonActionPerformed
 
@@ -364,7 +402,7 @@ public class NewPedido extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jcardapioLabel1;
     private javax.swing.JLabel mesajLabel;
-    private javax.swing.JSpinner quantidadeSpinner;
+    private javax.swing.JTextField quantidadeText;
     private javax.swing.JButton savejButton;
     private javax.swing.JButton visualizarjButton;
     // End of variables declaration//GEN-END:variables

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -28,7 +29,8 @@ public class NewAlteracao extends javax.swing.JDialog {
     public NewAlteracao(String tipo, RestauranteModel restaurante) {
         initComponents();
         this.setModal(true);
-        setLocationRelativeTo( null );
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
         this.restaurante = restaurante;
         this.titlejLabel.setText("Selecione o " + tipo);
         if("funcionário".equals(tipo)){
@@ -103,9 +105,12 @@ public class NewAlteracao extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alteração");
+        setBackground(new java.awt.Color(205, 179, 159));
+        setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        titlejLabel.setFont(new java.awt.Font("Segoe UI Symbol", 0, 24)); // NOI18N
         titlejLabel.setText("Selecione o funcionário");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -114,6 +119,8 @@ public class NewAlteracao extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 30, 0);
         getContentPane().add(titlejLabel, gridBagConstraints);
 
+        buscarText.setBackground(new java.awt.Color(234, 221, 212));
+        buscarText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         buscarText.setMinimumSize(new java.awt.Dimension(30, 27));
         buscarText.setPreferredSize(new java.awt.Dimension(40, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -124,6 +131,9 @@ public class NewAlteracao extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 6, 0);
         getContentPane().add(buscarText, gridBagConstraints);
 
+        buscarjButton.setBackground(new java.awt.Color(33, 12, 18));
+        buscarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        buscarjButton.setForeground(new java.awt.Color(240, 240, 240));
         buscarjButton.setText("Buscar");
         buscarjButton.setPreferredSize(new java.awt.Dimension(80, 29));
         buscarjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -139,8 +149,11 @@ public class NewAlteracao extends javax.swing.JDialog {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(318, 190));
 
+        alterarjList.setBackground(new java.awt.Color(234, 221, 212));
+        alterarjList.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         alterarjList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         alterarjList.setPreferredSize(new java.awt.Dimension(40, 0));
+        alterarjList.setSelectionBackground(new java.awt.Color(33, 12, 18));
         jScrollPane1.setViewportView(alterarjList);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -152,6 +165,9 @@ public class NewAlteracao extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 30, 10);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
+        editarjButton.setBackground(new java.awt.Color(33, 12, 18));
+        editarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        editarjButton.setForeground(new java.awt.Color(240, 240, 240));
         editarjButton.setText("Editar");
         editarjButton.setMaximumSize(new java.awt.Dimension(85, 40));
         editarjButton.setMinimumSize(new java.awt.Dimension(85, 40));
@@ -167,6 +183,9 @@ public class NewAlteracao extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 90, 20, 0);
         getContentPane().add(editarjButton, gridBagConstraints);
 
+        cancelarjButton.setBackground(new java.awt.Color(33, 12, 18));
+        cancelarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        cancelarjButton.setForeground(new java.awt.Color(240, 240, 240));
         cancelarjButton.setText("Cancelar");
         cancelarjButton.setMaximumSize(new java.awt.Dimension(100, 40));
         cancelarjButton.setMinimumSize(new java.awt.Dimension(100, 40));

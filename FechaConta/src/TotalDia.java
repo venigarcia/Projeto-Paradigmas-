@@ -1,3 +1,4 @@
+import java.awt.Color;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -25,7 +26,8 @@ public class TotalDia extends javax.swing.JDialog {
     public TotalDia(RestauranteModel restaurante) {
         initComponents();
         this.setModal(true);
-        setLocationRelativeTo( null );
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
         this.restaurante = restaurante;
         this.atendimentos = this.restaurante.getAtendimento();
         feedListAtendimento();
@@ -60,14 +62,22 @@ public class TotalDia extends javax.swing.JDialog {
         setTitle("Vendas do dia");
         setResizable(false);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Vendas do Dia");
 
+        atendimentosjList.setBackground(new java.awt.Color(234, 221, 212));
+        atendimentosjList.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
+        atendimentosjList.setSelectionBackground(new java.awt.Color(33, 12, 18));
         atendimentosjList.setVisibleRowCount(20);
         jScrollPane1.setViewportView(atendimentosjList);
 
         totaljLabel.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         totaljLabel.setText("Total: R$");
 
+        jButton1.setBackground(new java.awt.Color(33, 12, 18));
+        jButton1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Confirmar");
         jButton1.setMaximumSize(new java.awt.Dimension(95, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(95, 40));
@@ -82,20 +92,17 @@ public class TotalDia extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
-                    .addComponent(totaljLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(168, 168, 168))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(165, 165, 165))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                    .addComponent(totaljLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +113,7 @@ public class TotalDia extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(totaljLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );

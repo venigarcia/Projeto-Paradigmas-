@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import model.Mesa;
 import model.Item;
 import model.RestauranteModel;
@@ -30,7 +31,8 @@ public class controleMesa extends javax.swing.JDialog {
     public controleMesa(RestauranteModel restaurante, Restaurante r, Mesa mesa, int index) {
         initComponents();
         this.setModal(true);
-        setLocationRelativeTo( null );
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
         this.mesa = mesa;
         this.restaurante = restaurante;
         this.index = index;
@@ -83,18 +85,30 @@ public class controleMesa extends javax.swing.JDialog {
         setTitle("Controle de Mesa");
         setResizable(false);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Controle de Mesa");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         jLabel2.setText("Itens pedidos:");
 
+        itensjList.setBackground(new java.awt.Color(234, 221, 212));
+        itensjList.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
+        itensjList.setSelectionBackground(new java.awt.Color(33, 12, 18));
         jScrollPane1.setViewportView(itensjList);
 
+        totalLabel.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         totalLabel.setText("Total");
 
+        totalPessoaLabel.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         totalPessoaLabel.setText("Total p/ pessoa:");
 
+        gorjetaLabel.setFont(new java.awt.Font("Segoe UI Symbol", 0, 14)); // NOI18N
         gorjetaLabel.setText("Gorjeta");
 
+        fecharContajButton.setBackground(new java.awt.Color(33, 12, 18));
+        fecharContajButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        fecharContajButton.setForeground(new java.awt.Color(255, 255, 255));
         fecharContajButton.setText("Fechar Conta");
         fecharContajButton.setMaximumSize(new java.awt.Dimension(110, 41));
         fecharContajButton.setMinimumSize(new java.awt.Dimension(110, 41));
@@ -105,6 +119,9 @@ public class controleMesa extends javax.swing.JDialog {
             }
         });
 
+        voltarjButton.setBackground(new java.awt.Color(33, 12, 18));
+        voltarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        voltarjButton.setForeground(new java.awt.Color(255, 255, 255));
         voltarjButton.setText("Voltar");
         voltarjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +129,9 @@ public class controleMesa extends javax.swing.JDialog {
             }
         });
 
+        removerItemjButton.setBackground(new java.awt.Color(33, 12, 18));
+        removerItemjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        removerItemjButton.setForeground(new java.awt.Color(255, 255, 255));
         removerItemjButton.setText("Remover");
         removerItemjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,33 +143,25 @@ public class controleMesa extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(0, 361, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(totalLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(gorjetaLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(totalPessoaLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(voltarjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(fecharContajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(removerItemjButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(176, 176, 176))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(removerItemjButton, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(totalLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(gorjetaLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(totalPessoaLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(voltarjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fecharContajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,13 +174,13 @@ public class controleMesa extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(removerItemjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addComponent(totalLabel)
                 .addGap(18, 18, 18)
                 .addComponent(totalPessoaLabel)
                 .addGap(18, 18, 18)
                 .addComponent(gorjetaLabel)
-                .addGap(74, 74, 74)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fecharContajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(voltarjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))

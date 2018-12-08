@@ -1,4 +1,6 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,6 +12,7 @@ import model.Atendimento;
 import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,8 +40,12 @@ public class Restaurante extends javax.swing.JFrame {
      */
     public Restaurante() {
         initComponents();
-        setLocationRelativeTo( null );
-        
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
+        URL iconURL = getClass().getResource("/imagens/favicon.png");
+        // iconURL is null when not found
+        ImageIcon icon = new ImageIcon(iconURL);
+        this.setIconImage(icon.getImage());
         this.restaurante = new RestauranteModel();
         this.restaurante.resgatarGarcons();
         this.restaurante.resgatarCardapio();
@@ -219,6 +226,7 @@ public class Restaurante extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         totalCaixa = new javax.swing.JLabel();
         close = new javax.swing.JButton();
+        logoLabel = new javax.swing.JLabel();
         mesasjPanel = new javax.swing.JPanel();
         mesa1 = new javax.swing.JLabel();
         mesa2 = new javax.swing.JLabel();
@@ -251,7 +259,12 @@ public class Restaurante extends javax.swing.JFrame {
         toolBarjPanel.setMinimumSize(new java.awt.Dimension(0, 0));
         toolBarjPanel.setPreferredSize(new java.awt.Dimension(10, 200));
 
+        newPedido.setBackground(new java.awt.Color(33, 12, 18));
+        newPedido.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        newPedido.setForeground(new java.awt.Color(255, 255, 255));
         newPedido.setText("Novo Pedido");
+        newPedido.setToolTipText("Registrar um novo pedido");
+        newPedido.setBorder(null);
         newPedido.setPreferredSize(new java.awt.Dimension(99, 40));
         newPedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -259,46 +272,67 @@ public class Restaurante extends javax.swing.JFrame {
             }
         });
 
+        dataLabel.setBackground(new java.awt.Color(0, 0, 0));
+        dataLabel.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         dataLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dataLabel.setText("Data");
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Total em caixa:");
 
+        totalCaixa.setBackground(new java.awt.Color(0, 0, 0));
+        totalCaixa.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         totalCaixa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalCaixa.setText("R$ 2000,00");
 
+        close.setBackground(new java.awt.Color(33, 12, 18));
+        close.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        close.setForeground(new java.awt.Color(255, 255, 255));
         close.setText("Encerrar");
         close.setMaximumSize(new java.awt.Dimension(99, 40));
         close.setMinimumSize(new java.awt.Dimension(99, 40));
         close.setPreferredSize(new java.awt.Dimension(99, 40));
+
+        logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout toolBarjPanelLayout = new javax.swing.GroupLayout(toolBarjPanel);
         toolBarjPanel.setLayout(toolBarjPanelLayout);
         toolBarjPanelLayout.setHorizontalGroup(
             toolBarjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(toolBarjPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(toolBarjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(newPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(totalCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(693, 693, 693))
+                .addGroup(toolBarjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(toolBarjPanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(toolBarjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(totalCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toolBarjPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(toolBarjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(newPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         toolBarjPanelLayout.setVerticalGroup(
             toolBarjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(toolBarjPanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
+                .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
                 .addComponent(newPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 530, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
                 .addComponent(dataLabel)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(totalCaixa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -319,7 +353,7 @@ public class Restaurante extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-        gridBagConstraints.insets = new java.awt.Insets(12, 48, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(40, 48, 60, 0);
         mesasjPanel.add(mesa1, gridBagConstraints);
 
         mesa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mesaT.png"))); // NOI18N
@@ -333,7 +367,7 @@ public class Restaurante extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 112, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(40, 112, 60, 0);
         mesasjPanel.add(mesa2, gridBagConstraints);
 
         mesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mesaT.png"))); // NOI18N
@@ -347,7 +381,7 @@ public class Restaurante extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 115, 0, 24);
+        gridBagConstraints.insets = new java.awt.Insets(40, 115, 60, 24);
         mesasjPanel.add(mesa3, gridBagConstraints);
 
         mesa4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mesaT.png"))); // NOI18N
@@ -360,7 +394,7 @@ public class Restaurante extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(69, 48, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(69, 48, 59, 0);
         mesasjPanel.add(mesa4, gridBagConstraints);
 
         mesa5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mesaT.png"))); // NOI18N
@@ -373,7 +407,7 @@ public class Restaurante extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(69, 112, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(69, 112, 59, 0);
         mesasjPanel.add(mesa5, gridBagConstraints);
 
         mesa6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mesaT.png"))); // NOI18N
@@ -386,7 +420,7 @@ public class Restaurante extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(69, 115, 0, 24);
+        gridBagConstraints.insets = new java.awt.Insets(69, 115, 59, 24);
         mesasjPanel.add(mesa6, gridBagConstraints);
 
         mesa7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mesaT.png"))); // NOI18N
@@ -399,7 +433,7 @@ public class Restaurante extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(105, 48, 22, 0);
+        gridBagConstraints.insets = new java.awt.Insets(105, 48, 59, 0);
         mesasjPanel.add(mesa7, gridBagConstraints);
 
         mesa8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mesaT.png"))); // NOI18N
@@ -412,7 +446,7 @@ public class Restaurante extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(105, 112, 22, 0);
+        gridBagConstraints.insets = new java.awt.Insets(105, 112, 59, 0);
         mesasjPanel.add(mesa8, gridBagConstraints);
 
         mesa9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mesaT.png"))); // NOI18N
@@ -425,8 +459,10 @@ public class Restaurante extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(105, 115, 22, 24);
+        gridBagConstraints.insets = new java.awt.Insets(105, 115, 59, 24);
         mesasjPanel.add(mesa9, gridBagConstraints);
+
+        backgroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/background.jpg"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -434,8 +470,12 @@ public class Restaurante extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 4;
         mesasjPanel.add(backgroundImg, gridBagConstraints);
 
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Menu");
 
+        cadFunc.setBackground(new java.awt.Color(234, 221, 212));
         cadFunc.setText("Cadastro de Funcionário");
         cadFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -502,11 +542,11 @@ public class Restaurante extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(toolBarjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mesasjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(mesasjPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mesasjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mesasjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
             .addComponent(toolBarjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
         );
 
@@ -626,6 +666,7 @@ public class Restaurante extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JLabel mesa1;
     private javax.swing.JLabel mesa2;
     private javax.swing.JLabel mesa3;

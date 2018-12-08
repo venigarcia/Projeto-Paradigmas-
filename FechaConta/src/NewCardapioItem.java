@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.Random;
 import model.RestauranteModel;
 import model.Cardapio;
@@ -24,7 +25,8 @@ public class NewCardapioItem extends javax.swing.JDialog {
     public NewCardapioItem(RestauranteModel restaurante) {
         initComponents();
         this.setModal(true);
-        setLocationRelativeTo( null );
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
         Random rand = new Random();
         int cod = 1000 + rand.nextInt(1000);
         this.codText.setText(String.valueOf(cod));
@@ -34,7 +36,8 @@ public class NewCardapioItem extends javax.swing.JDialog {
     public NewCardapioItem(RestauranteModel restaurante, int index){
         initComponents();
         this.setModal(true);
-        setLocationRelativeTo( null );
+        this.setModal(true);
+        this.setLocationRelativeTo( null );
         this.restaurante = restaurante;
         this.cardapio = this.restaurante.getCardapio();
         this.alterar = true;
@@ -70,20 +73,33 @@ public class NewCardapioItem extends javax.swing.JDialog {
         setPreferredSize(new java.awt.Dimension(470, 362));
         setResizable(false);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Cod.");
 
+        codText.setBackground(new java.awt.Color(234, 221, 212));
+        codText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         codText.setToolTipText("");
         codText.setEnabled(false);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Preço");
 
+        precoText.setBackground(new java.awt.Color(234, 221, 212));
+        precoText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Descrição");
 
+        descText.setBackground(new java.awt.Color(234, 221, 212));
         descText.setColumns(1);
+        descText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         descText.setLineWrap(true);
         descText.setRows(6);
         jScrollPane1.setViewportView(descText);
 
+        salvarButton.setBackground(new java.awt.Color(33, 12, 18));
+        salvarButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        salvarButton.setForeground(new java.awt.Color(255, 255, 255));
         salvarButton.setText("Salvar");
         salvarButton.setMaximumSize(new java.awt.Dimension(85, 40));
         salvarButton.setMinimumSize(new java.awt.Dimension(85, 40));
@@ -94,6 +110,9 @@ public class NewCardapioItem extends javax.swing.JDialog {
             }
         });
 
+        cancelarButton.setBackground(new java.awt.Color(33, 12, 18));
+        cancelarButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelarButton.setText("Cancelar");
         cancelarButton.setMaximumSize(new java.awt.Dimension(85, 40));
         cancelarButton.setMinimumSize(new java.awt.Dimension(85, 40));
@@ -130,8 +149,8 @@ public class NewCardapioItem extends javax.swing.JDialog {
                         .addGap(128, 128, 128)
                         .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(85, Short.MAX_VALUE))))
+                        .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(77, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

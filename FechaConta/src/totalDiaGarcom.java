@@ -1,3 +1,6 @@
+
+import java.awt.Color;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,7 +18,8 @@ public class totalDiaGarcom extends javax.swing.JDialog {
      */
     public totalDiaGarcom(double total) {
         initComponents();
-        setLocationRelativeTo( null );
+        this.setLocationRelativeTo( null );
+        this.getContentPane().setBackground(new Color(205, 179, 159));
         this.setModal(true);
         this.totalLabel.setText("Total do dia: R$" + String.format("%.2f", total));
     }
@@ -34,12 +38,16 @@ public class totalDiaGarcom extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Total garçom");
+        setModalityType(null);
         setType(java.awt.Window.Type.POPUP);
 
         totalLabel.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         totalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalLabel.setText("Total: R$");
 
+        fecharjButton.setBackground(new java.awt.Color(33, 12, 18));
+        fecharjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        fecharjButton.setForeground(new java.awt.Color(255, 255, 255));
         fecharjButton.setText("Fechar");
         fecharjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
