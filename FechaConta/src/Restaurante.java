@@ -225,7 +225,6 @@ public class Restaurante extends javax.swing.JFrame {
         dataLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         totalCaixa = new javax.swing.JLabel();
-        close = new javax.swing.JButton();
         logoLabel = new javax.swing.JLabel();
         mesasjPanel = new javax.swing.JPanel();
         mesa1 = new javax.swing.JLabel();
@@ -287,14 +286,6 @@ public class Restaurante extends javax.swing.JFrame {
         totalCaixa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalCaixa.setText("R$ 2000,00");
 
-        close.setBackground(new java.awt.Color(33, 12, 18));
-        close.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
-        close.setForeground(new java.awt.Color(255, 255, 255));
-        close.setText("Encerrar");
-        close.setMaximumSize(new java.awt.Dimension(99, 40));
-        close.setMinimumSize(new java.awt.Dimension(99, 40));
-        close.setPreferredSize(new java.awt.Dimension(99, 40));
-
         logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo.png"))); // NOI18N
 
@@ -308,8 +299,7 @@ public class Restaurante extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(toolBarjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(totalCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                             .addComponent(dataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toolBarjPanelLayout.createSequentialGroup()
@@ -326,20 +316,20 @@ public class Restaurante extends javax.swing.JFrame {
                 .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addComponent(newPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 415, Short.MAX_VALUE)
                 .addComponent(dataLabel)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(totalCaixa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         mesasjPanel.setBackground(new java.awt.Color(205, 179, 159));
         mesasjPanel.setAlignmentX(0.0F);
         mesasjPanel.setAlignmentY(0.0F);
+        mesasjPanel.setMinimumSize(new java.awt.Dimension(959, 650));
+        mesasjPanel.setPreferredSize(new java.awt.Dimension(959, 650));
         mesasjPanel.setLayout(new java.awt.GridBagLayout());
 
         mesa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mesaT.png"))); // NOI18N
@@ -546,8 +536,8 @@ public class Restaurante extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mesasjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
-            .addComponent(toolBarjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
+            .addComponent(toolBarjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+            .addComponent(mesasjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -658,7 +648,6 @@ public class Restaurante extends javax.swing.JFrame {
     private javax.swing.JLabel backgroundImg;
     private javax.swing.JMenuItem cadCardapio;
     private javax.swing.JMenuItem cadFunc;
-    private javax.swing.JButton close;
     private javax.swing.JLabel dataLabel;
     private javax.swing.JMenuItem gorjetasGarcom;
     private javax.swing.JLabel jLabel1;

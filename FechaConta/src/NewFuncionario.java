@@ -131,9 +131,9 @@ public class NewFuncionario extends javax.swing.JDialog {
         cancelarButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
         cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelarButton.setText("Cancelar");
-        cancelarButton.setMaximumSize(new java.awt.Dimension(85, 40));
-        cancelarButton.setMinimumSize(new java.awt.Dimension(85, 40));
-        cancelarButton.setPreferredSize(new java.awt.Dimension(93, 40));
+        cancelarButton.setMaximumSize(new java.awt.Dimension(105, 40));
+        cancelarButton.setMinimumSize(new java.awt.Dimension(93, 40));
+        cancelarButton.setPreferredSize(new java.awt.Dimension(105, 40));
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarButtonActionPerformed(evt);

@@ -135,7 +135,7 @@ public class NewAlteracao extends javax.swing.JDialog {
         buscarjButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
         buscarjButton.setForeground(new java.awt.Color(240, 240, 240));
         buscarjButton.setText("Buscar");
-        buscarjButton.setPreferredSize(new java.awt.Dimension(80, 29));
+        buscarjButton.setPreferredSize(new java.awt.Dimension(85, 35));
         buscarjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarjButtonActionPerformed(evt);
@@ -189,7 +189,7 @@ public class NewAlteracao extends javax.swing.JDialog {
         cancelarjButton.setText("Cancelar");
         cancelarjButton.setMaximumSize(new java.awt.Dimension(100, 40));
         cancelarjButton.setMinimumSize(new java.awt.Dimension(100, 40));
-        cancelarjButton.setPreferredSize(new java.awt.Dimension(100, 40));
+        cancelarjButton.setPreferredSize(new java.awt.Dimension(100, 45));
         cancelarjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarjButtonActionPerformed(evt);

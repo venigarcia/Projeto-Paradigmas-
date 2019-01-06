@@ -114,9 +114,9 @@ public class NewCardapioItem extends javax.swing.JDialog {
         cancelarButton.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
         cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelarButton.setText("Cancelar");
-        cancelarButton.setMaximumSize(new java.awt.Dimension(85, 40));
-        cancelarButton.setMinimumSize(new java.awt.Dimension(85, 40));
-        cancelarButton.setPreferredSize(new java.awt.Dimension(85, 40));
+        cancelarButton.setMaximumSize(new java.awt.Dimension(95, 40));
+        cancelarButton.setMinimumSize(new java.awt.Dimension(95, 40));
+        cancelarButton.setPreferredSize(new java.awt.Dimension(95, 40));
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarButtonActionPerformed(evt);
@@ -149,8 +149,8 @@ public class NewCardapioItem extends javax.swing.JDialog {
                         .addGap(128, 128, 128)
                         .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(77, Short.MAX_VALUE))))
+                        .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(65, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
